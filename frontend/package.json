@@ -8,7 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "sync-branch": "CURRENT_BRANCH=$(git branch --show-current) && git checkout main && git pull && git checkout $CURRENT_BRANCH && git merge main && git push",
+    "delete-branch": "CURRENT_BRANCH=$(git branch --show-current) && git checkout main && git pull && git branch -d $CURRENT_BRANCH && git branch"
   },
   "dependencies": {
     "@radix-ui/react-navigation-menu": "^1.2.10",
