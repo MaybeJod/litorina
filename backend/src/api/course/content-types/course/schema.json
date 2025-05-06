@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "courses",
+  "info": {
+    "singularName": "course",
+    "pluralName": "courses",
+    "displayName": "Course"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "blocks"
+    }
+  }
+}
