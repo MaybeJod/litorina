@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
+import Logo from "@/components/ui/logo";
 
 interface Course {
   id: string | number;
@@ -31,6 +32,7 @@ function App() {
         </div>
       ))}
       <Button>Click me</Button>
+      <Logo />
     </div>
   );
 }
