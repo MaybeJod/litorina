@@ -12,7 +12,9 @@
     "start": "strapi start",
     "strapi": "strapi",
     "upgrade": "npx @strapi/upgrade latest",
-    "upgrade:dry": "npx @strapi/upgrade latest --dry"
+    "upgrade:dry": "npx @strapi/upgrade latest --dry",
+    "sync-branch": "CURRENT_BRANCH=$(git branch --show-current) && git checkout main && git pull && git checkout $CURRENT_BRANCH && git merge main && git push",
+    "delete-branch": "CURRENT_BRANCH=$(git branch --show-current) && git checkout main && git pull && git branch -d $CURRENT_BRANCH && git branch"
   },
   "dependencies": {
     "@strapi/plugin-cloud": "5.12.7",
