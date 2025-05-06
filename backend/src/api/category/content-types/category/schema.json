@@ -4,14 +4,14 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "category",
+    "displayName": "Category",
     "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "Title": {
+    "title": {
       "type": "string"
     },
     "courses": {
