@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/MaybeJod/litorina/issues"
   },
-  "homepage": "https://github.com/MaybeJod/litorina#readme"
+  "homepage": "https://github.com/MaybeJod/litorina#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
 }
