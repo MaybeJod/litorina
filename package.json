@@ -1,0 +1,22 @@
+{
+  "name": "litorina",
+  "version": "1.0.0",
+  "description": "We are rebuilding the Litorina School website using Strapi as a headless CMS for content management and React for the frontend. This modern stack allows for a flexible, maintainable, and performant web experience.",
+  "main": "index.js",
+  "scripts": {
+    "sync-branch": "CURRENT_BRANCH=$(git branch --show-current) && git checkout main && git pull && git checkout $CURRENT_BRANCH && git merge main && git push",
+    "delete-branch": "CURRENT_BRANCH=$(git branch --show-current) && git checkout main && git pull && git branch -d $CURRENT_BRANCH && git branch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaybeJod/litorina.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MaybeJod/litorina/issues"
+  },
+  "homepage": "https://github.com/MaybeJod/litorina#readme"
+}
