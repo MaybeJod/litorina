@@ -15,6 +15,12 @@
     },
     "Description": {
       "type": "blocks"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "courses"
     }
   }
 }
