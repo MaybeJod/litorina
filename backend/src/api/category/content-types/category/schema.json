@@ -19,6 +19,10 @@
       "relation": "oneToMany",
       "target": "api::course.course",
       "mappedBy": "category"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
     }
   }
 }
