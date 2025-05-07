@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import Logo from "@/components/ui/Logo";
+import Logo from "@/components/Logo";
 
 interface Course {
   id: string | number;
