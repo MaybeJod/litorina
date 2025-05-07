@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Logo() {
+const Logo = () => {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
 
   const url = "http://localhost:1337/api/site-settings?populate=logo";
@@ -29,6 +29,6 @@ function Logo() {
       <img src={logoUrl} alt="Site Logo" className="w-48 h-auto" />
     </div>
   );
-}
+};
 
 export default Logo;
