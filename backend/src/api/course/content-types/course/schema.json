@@ -47,6 +47,26 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "coursePeriod": {
+      "type": "richtext",
+      "required": true
+    },
+    "application": {
+      "type": "blocks",
+      "required": true
+    },
+    "costs": {
+      "type": "blocks",
+      "required": true
+    },
+    "moreInformation": {
+      "type": "blocks",
+      "required": true
+    },
+    "place": {
+      "type": "blocks",
+      "required": true
     }
   }
 }
