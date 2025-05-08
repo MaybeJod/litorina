@@ -12,7 +12,9 @@
   },
   "attributes": {
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "unique": true
     },
     "description": {
       "type": "blocks"
@@ -26,6 +28,25 @@
     "slug": {
       "type": "uid",
       "targetField": "title"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false,
+      "required": true
     }
   }
 }

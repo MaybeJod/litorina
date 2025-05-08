@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "home_navigation_cards",
+  "info": {
+    "singularName": "home-navigation-card",
+    "pluralName": "home-navigation-cards",
+    "displayName": "Home Navigation Card",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "media": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "unique": true
+    },
+    "url": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    }
+  }
+}
