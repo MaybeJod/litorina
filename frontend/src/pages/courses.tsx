@@ -1,5 +1,5 @@
-const courses = () => {
+const Courses = () => {
   return <div>courses</div>;
 };
 
-export default courses;
+export default Courses;
