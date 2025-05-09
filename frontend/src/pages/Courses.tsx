@@ -14,7 +14,7 @@ const Courses = () => {
       <h1 className="text-6xl text-center m-6 font-bold">COURSES</h1>
 
       {/* filter component */}
-      <div className="flex gap-1 border-2 border-grays-600 border-solid p-3">
+      <div className="flex gap-1 border-2 border-grays-600 border-solid p-3 flex-wrap">
         <div className="w-40 h-10 border-1 border-blue-400"></div>
         <div className="w-40 h-10 border-1 border-blue-400"></div>
         <div className="w-40 h-10 border-1 border-blue-400"></div>
