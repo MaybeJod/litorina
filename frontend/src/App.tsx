@@ -11,7 +11,7 @@ function App() {
   const [courses, setCourses] = useState<Course[]>([]);
 
   // const url = "https://litorina.onrender.com/api/courses";
-  const url = "https://litorina.onrender.com/api/categories";
+  const url = "https://litorina.onrender.com/api/navigation-items";
 
   useEffect(() => {
     const getData = async () => {
