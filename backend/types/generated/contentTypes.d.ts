@@ -548,6 +548,36 @@ export interface ApiHomeNavigationCardHomeNavigationCard
   };
 }
 
+export interface ApiLogoLogo extends Struct.SingleTypeSchema {
+  collectionName: 'logos';
+  info: {
+    description: '';
+    displayName: 'Logo';
+    pluralName: 'logos';
+    singularName: 'logo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::logo.logo'> &
+      Schema.Attribute.Private;
+    media: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    > &
+      Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiNavigationItemNavigationItem
   extends Struct.CollectionTypeSchema {
   collectionName: 'navigation_items';
@@ -1132,6 +1162,7 @@ declare module '@strapi/strapi' {
       'api::event.event': ApiEventEvent;
       'api::hero-section.hero-section': ApiHeroSectionHeroSection;
       'api::home-navigation-card.home-navigation-card': ApiHomeNavigationCardHomeNavigationCard;
+      'api::logo.logo': ApiLogoLogo;
       'api::navigation-item.navigation-item': ApiNavigationItemNavigationItem;
       'api::news-article.news-article': ApiNewsArticleNewsArticle;
       'plugin::content-releases.release': PluginContentReleasesRelease;
