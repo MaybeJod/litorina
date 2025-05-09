@@ -1,14 +1,25 @@
 export interface NavigationItem {
-    title: string;
-    url: string;
-    order: number;
-    }
+  title: string;
+  url: string;
+  order: number;
+}
 
-    export async function getNavigationItems(): Promise<NavigationItem[]> {
-        const response = await fetch('https://litorina.onrender.com/api/navigation-items');
+export async function getNavigationItems(): Promise<NavigationItem[]> {
+    try {
+        const response = await fetch(
+            "https://litorina.onrender.com/api/navigation-items"
+        );
         if (!response.ok) {
-            throw new Error('Failed to fetch navigation items');
+            throw new Error("Failed to fetch navigation items");
         }
         const data = await response.json();
-        return data.sort((a: { order: number; }, b: { order: number; }) => a.order - b.order);
+        return data.sort(
+            (a: { order: number }, b: { order: number }) => a.order - b.order
+        );
     }
+    catch (error) {
+        console.error("Error fetching navigation items:", error);
+        return [];
+    }
+}
+
