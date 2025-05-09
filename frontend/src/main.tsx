@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Courses from "./pages/Courses.tsx";
 
 const router = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/courses",
-    element: <div>About</div>,
+    element: <Courses />,
   },
   {
     path: "/events",
@@ -24,13 +25,15 @@ const router = createBrowserRouter([
   {
     path: "/contact",
     element: <div>Contact</div>,
+  },
+  {
+    path: "*",
+    element: <div>404 - Page Not Found</div>,
   }
 ]);
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <RouterProvider router={router} />
-    {/* <App /> */}
-    <App />
   </StrictMode>
 );

@@ -1,42 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
-import Logo from "@/components/Logo";
+import Index from "./pages/Index";
 
-interface Course {
-  id: string | number;
-  title: string;
-  url: string;
-}
+
 
 function App() {
-  const [courses, setCourses] = useState<Course[]>([]);
 
-  // const url = "https://litorina.onrender.com/api/courses";
-  const url = "https://litorina.onrender.com/api/navigation-items";
-
-  useEffect(() => {
-    const getData = async () => {
-      const response = await fetch(url);
-      const data = await response.json();
-      console.log(data["data"]);
-      setCourses(data["data"]);
-    };
-
-    getData();
-  }, []);
-
-  return (
-    <div className="flex flex-col items-center justify-center min-h-svh">
-      {courses.map((course) => (
-        <div key={course.id} className="title">
-          {course.title}
-          {course.url}
-        </div>
-      ))}
-      <Button>Click me</Button>
-      <Logo />
-    </div>
-  );
+  return <Index />;
 }
 
 export default App;
