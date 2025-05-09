@@ -5,6 +5,7 @@ import Logo from "@/components/Logo";
 interface Course {
   id: string | number;
   title: string;
+  url: string;
 }
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
       {courses.map((course) => (
         <div key={course.id} className="title">
           {course.title}
+          {course.url}
         </div>
       ))}
       <Button>Click me</Button>
