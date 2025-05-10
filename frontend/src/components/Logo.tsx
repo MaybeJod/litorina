@@ -17,7 +17,7 @@ const Logo = () => {
       } catch (error) {
         console.error("Error fetching logo:", error);
       }
-    }; 
+    };
 
     fetchLogo();
   }, []);
@@ -25,8 +25,12 @@ const Logo = () => {
   if (!logoUrl) return <p>Loading logo...</p>;
 
   return (
-    <div className="flex justify-center items-center py-4">
-      <img src={logoUrl} alt="Site Logo" className="w-48 h-auto" />
+    <div>
+      <img
+        src={logoUrl}
+        alt="Litorina Logo"
+        className="w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36 h-auto"
+      />
     </div>
   );
 };
