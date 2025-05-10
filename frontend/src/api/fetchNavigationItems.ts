@@ -5,6 +5,12 @@ export interface NavigationItem {
   id: number;
 }
 
+// interface ApiResponseItem {
+//     title: string;
+//     url: string;
+//     order: number;
+//   }
+
 export async function getNavigationItems(): Promise<NavigationItem[]> {
   try {
     const response = await fetch(
