@@ -3,6 +3,7 @@ import IndexSectionLayout from '@/components/IndexSectionLayout';
 import type { Nav } from '@/interfaces/NavInterface'; 
 import type { Course } from '@/interfaces/CourseInterface'; 
 import type { News } from '@/interfaces/NewsInterface'; 
+import Header from '@/components/Header';
 
 // Import your API fetching functions (replace with your actual imports)
 // import { fetchNavigation, fetchCourses, fetchNews } from '@/api';
@@ -60,6 +61,7 @@ const Index: React.FC = () => {
 
   return (
     <div className="container mx-auto py-8">
+      <Header/>
       {navData && <IndexSectionLayout type="nav" data={navData} />}
       {courseData && <IndexSectionLayout type="course" data={courseData} title="Our Courses" />}
       {newsData && <IndexSectionLayout type="news" data={newsData} title="Latest News" />}
