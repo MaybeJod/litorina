@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 const Logo = () => {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
 
-  const url = "http://localhost:1337/api/site-settings?populate=logo";
+  const url = "https://litorina.onrender.com/api/logo?populate=*";
 
   useEffect(() => {
     const fetchLogo = async () => {
       try {
         const response = await fetch(url);
-        const json = await response.json();
-        const logoData = json?.data?.[0]?.logo;
-        if (logoData?.url) {
-          setLogoUrl(`http://localhost:1337${logoData.url}`);
+        const data = await response.json();
+        const logoImgUrl = data?.data?.media?.[0]?.formats.small.url;
+        if (logoImgUrl) {
+          setLogoUrl(`https://litorina.onrender.com${logoImgUrl}`);
         }
       } catch (error) {
         console.error("Error fetching logo:", error);
@@ -25,8 +25,12 @@ const Logo = () => {
   if (!logoUrl) return <p>Loading logo...</p>;
 
   return (
-    <div className="flex justify-center items-center py-4">
-      <img src={logoUrl} alt="Site Logo" className="w-48 h-auto" />
+    <div>
+      <img
+        src={logoUrl}
+        alt="Litorina Logo"
+        className="w-20 sm:w-24 md:w-28 lg:w-32 xl:w-36 h-auto"
+      />
     </div>
   );
 };

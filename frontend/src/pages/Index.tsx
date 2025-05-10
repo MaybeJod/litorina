@@ -1,11 +1,12 @@
+import type { Nav } from "@/interfaces/NavInterface";
+import type { Course } from "@/interfaces/CourseInterface";
+import type { News } from "@/interfaces/NewsInterface";
 import React, { useEffect, useState } from "react";
 import fetchFeaturedNavigation from "@/api/fetchFeaturedNavigation";
 import fetchFeaturedCourses from "@/api/fetchFeaturedCourses";
 import fetchFeaturedNews from "@/api/fetchFeaturedNews";
 import IndexSectionLayout from "@/components/IndexSectionLayout";
-import type { Nav } from "@/interfaces/NavInterface";
-import type { Course } from "@/interfaces/CourseInterface";
-import type { News } from "@/interfaces/NewsInterface";
+import Header from "@/components/Header";
 
 const Index: React.FC = () => {
   const [featuredNavData, setFeaturedNavData] = useState<Nav[] | null>(null);
@@ -37,27 +38,30 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <main className="container mx-auto py-8">
-      {featuredNavData && (
-        <IndexSectionLayout type="nav" data={featuredNavData} />
-      )}
-      {featuredCoursesData && (
-        <IndexSectionLayout
-          type="course"
-          data={featuredCoursesData}
-          title="Featured Courses"
-          buttonText="Courses"
-        />
-      )}
-      {featuredNewsData && (
-        <IndexSectionLayout
-          type="news"
-          data={featuredNewsData}
-          title="Latest News"
-          buttonText="News"
-        />
-      )}
-    </main>
+    <>
+      <Header />
+      <main className="container mx-auto py-8">
+        {featuredNavData && (
+          <IndexSectionLayout type="nav" data={featuredNavData} />
+        )}
+        {featuredCoursesData && (
+          <IndexSectionLayout
+            type="course"
+            data={featuredCoursesData}
+            title="Featured Courses"
+            buttonText="Courses"
+          />
+        )}
+        {featuredNewsData && (
+          <IndexSectionLayout
+            type="news"
+            data={featuredNewsData}
+            title="Latest News"
+            buttonText="News"
+          />
+        )}
+      </main>
+    </>
   );
 };
 

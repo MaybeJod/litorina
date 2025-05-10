@@ -1,4 +1,3 @@
-import React from "react";
 import type { Course } from "@/interfaces/CourseInterface";
 import type { Nav } from "@/interfaces/NavInterface";
 import type { News } from "@/interfaces/NewsInterface";
