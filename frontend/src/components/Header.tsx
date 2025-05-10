@@ -2,6 +2,12 @@ import { useEffect, useState } from "react";
 import Logo from "./Logo";
 import { getNavigationItems } from "@/api/fetchNavigationItems";
 import type { NavigationItem } from "@/api/fetchNavigationItems";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
 
 const Header = () => {
   const [navItems, setNavItems] = useState<NavigationItem[]>([]);
@@ -15,21 +21,23 @@ const Header = () => {
   }, []);
 
   return (
-    <>
-      <nav className="flex ">
-        <Logo />
-        <ul className="flex gap-5">
+    <header className="flex justify-between items-center">
+      <Logo />
+      <NavigationMenu>
+        <NavigationMenuList>
           {navItems.map((item) => (
-            <li key={item.id}>
-              <a href={item.url} className="text-lg font-medium">
+            <NavigationMenuItem key={item.id}>
+              <NavigationMenuLink href={item.url}>
                 {item.title}
-              </a>
-            </li>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
           ))}
-          <li className="text-lg font-medium">SV</li>
-        </ul>
-      </nav>
-    </>
+          <NavigationMenuItem>
+            <NavigationMenuLink href="#sv">SV</NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </header>
   );
 };
 
