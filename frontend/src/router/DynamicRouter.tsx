@@ -10,7 +10,7 @@ const DynamicRouter = () => {
   useEffect(() => {
     const fetchRoutes = async () => {
       const navigationItems = await getNavigationItems();
-      console.log("Fetched navigation items", navigationItems);
+      
 
       const componentMap: Record<string, JSX.Element> = {
         "/courses": <Courses />,
