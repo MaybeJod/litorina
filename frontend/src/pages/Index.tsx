@@ -45,7 +45,8 @@ const Index: React.FC = () => {
         <IndexSectionLayout
           type="course"
           data={featuredCoursesData}
-          title="Our Courses"
+          title="Featured Courses"
+          buttonText="Courses"
         />
       )}
       {featuredNewsData && (
@@ -53,6 +54,7 @@ const Index: React.FC = () => {
           type="news"
           data={featuredNewsData}
           title="Latest News"
+          buttonText="News"
         />
       )}
     </main>

@@ -2,6 +2,7 @@ import React from "react";
 import type { Course } from "@/interfaces/CourseInterface";
 import type { Nav } from "@/interfaces/NavInterface";
 import type { News } from "@/interfaces/NewsInterface";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardHeader,
@@ -15,15 +16,24 @@ interface SectionProps {
   type: "nav" | "course" | "news";
   data: Nav[] | Course[] | News[] | null;
   title?: string;
+  buttonText?: string;
 }
 
-const IndexSectionLayout: React.FC<SectionProps> = ({ type, data, title }) => {
+const IndexSectionLayout: React.FC<SectionProps> = ({
+  type,
+  data,
+  title,
+  buttonText,
+}) => {
   if (!data || data.length === 0) {
     return <div className="py-8">No {type} items available.</div>;
   }
 
   const sectionTitle =
     title || (type === "course" ? "Courses" : type === "news" ? "News" : "");
+
+  const sectionLink =
+    type === "course" ? "courses" : type === "news" ? "news" : "";
 
   return (
     <section className="py-8">
@@ -44,15 +54,11 @@ const IndexSectionLayout: React.FC<SectionProps> = ({ type, data, title }) => {
               {type === "course" && (
                 <CardTitle>{(item as Course).title}</CardTitle>
               )}
-              {type === "news" && (
-                <CardTitle>{(item as News).title}</CardTitle>
-              )}
+              {type === "news" && <CardTitle>{(item as News).title}</CardTitle>}
             </CardHeader>
             <CardContent>
               {type === "course" && (
-                <CardDescription>
-                  {(item as Course).summary}
-                </CardDescription>
+                <CardDescription>{(item as Course).summary}</CardDescription>
               )}
               {type === "news" && (
                 <CardDescription>
@@ -76,7 +82,9 @@ const IndexSectionLayout: React.FC<SectionProps> = ({ type, data, title }) => {
       </div>
       {(type === "course" || type === "news") && data && (
         <div className="mt-6 text-center">
-          <Button>See All {sectionTitle}</Button>
+          <Button asChild>
+            <Link to={sectionLink}>See All {buttonText}</Link>
+          </Button>
         </div>
       )}
     </section>
