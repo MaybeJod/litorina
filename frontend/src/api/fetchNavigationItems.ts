@@ -2,36 +2,29 @@ export interface NavigationItem {
   title: string;
   url: string;
   order: number;
+  id: number;
 }
 
-interface ApiResponseItem {
-    title: string;
-    url: string;
-    order: number;
-  }
+// interface ApiResponseItem {
+//     title: string;
+//     url: string;
+//     order: number;
+//   }
 
 export async function getNavigationItems(): Promise<NavigationItem[]> {
-    try {
-        const response = await fetch(
-            "https://litorina.onrender.com/api/navigation-items"
-        );
-        if (!response.ok) {
-            throw new Error("Failed to fetch navigation items");
-        }
-        const responseData = await response.json();
-        const navigationItems:ApiResponseItem[] = responseData.data;
-
-        return navigationItems.map((item: ApiResponseItem) => ({
-            title: item.title,
-            url: item.url,
-            order: item.order,
-        }))
-        .sort((a: NavigationItem, b: NavigationItem) => a.order - b.order);
-       
+  try {
+    const response = await fetch(
+      "https://litorina.onrender.com/api/navigation-items"
+    );
+    if (!response.ok) {
+      throw new Error("Failed to fetch navigation items");
     }
-    catch (error) {
-        console.error("Error fetching navigation items:", error);
-        return [];
-    }
+    const data = await response.json();
+    return data.data.sort(
+      (a: { order: number }, b: { order: number }) => a.order - b.order
+    );
+  } catch (error) {
+    console.error("Error fetching navigation items:", error);
+    return [];
+  }
 }
-

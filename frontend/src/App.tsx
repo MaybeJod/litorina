@@ -1,13 +1,7 @@
-import { Navbar } from "./components/Navbar";
 import Index from "./pages/Index";
 
 function App() {
-  return (
-    <>
-      <Navbar />
-      <Index />
-    </>
-  );
+  return <Index />;
 }
 
 export default App;
