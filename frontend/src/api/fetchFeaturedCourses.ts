@@ -5,7 +5,7 @@ const fetchFeaturedCourses = async (): Promise<Course[]> => {
     const response = await fetch("https://litorina.onrender.com/api/courses");
 
     if (!response.ok) {
-      throw new Error("Failed to fetch course items");
+      throw new Error("Failed to fetch courses");
     }
 
     const jsonData = await response.json();
@@ -19,7 +19,7 @@ const fetchFeaturedCourses = async (): Promise<Course[]> => {
 
     return courses.filter((course: Course) => course.isFeatured === true).slice(0,4);
   } catch (error) {
-    console.error("Error fetching home navigation items:", error);
+    console.error("Error fetching courses:", error);
     return [];
   }
 };
