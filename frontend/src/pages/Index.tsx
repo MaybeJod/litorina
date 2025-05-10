@@ -6,7 +6,6 @@ import fetchFeaturedNavigation from "@/api/fetchFeaturedNavigation";
 import fetchFeaturedCourses from "@/api/fetchFeaturedCourses";
 import fetchFeaturedNews from "@/api/fetchFeaturedNews";
 import IndexSectionLayout from "@/components/IndexSectionLayout";
-import Header from "@/components/Header";
 
 const Index: React.FC = () => {
   const [featuredNavData, setFeaturedNavData] = useState<Nav[] | null>(null);
@@ -26,6 +25,7 @@ const Index: React.FC = () => {
         fetchFeaturedCourses(),
         fetchFeaturedNews(),
       ]);
+
       if (featuredNavResponse.status === "fulfilled")
         setFeaturedNavData(featuredNavResponse.value);
       if (featuredCoursesResponse.status === "fulfilled")
@@ -38,49 +38,29 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <>
-      <Header />
-      <main className="container mx-auto py-8">
-        {featuredNavData && (
-          <IndexSectionLayout type="nav" data={featuredNavData} />
-        )}
-        {featuredCoursesData && (
-          <IndexSectionLayout
-            type="course"
-            data={featuredCoursesData}
-            title="Featured Courses"
-            buttonText="Courses"
-          />
-        )}
-        {featuredNewsData && (
-          <IndexSectionLayout
-            type="news"
-            data={featuredNewsData}
-            title="Latest News"
-            buttonText="News"
-          />
-        )}
-      </main>
-    </>
+    <main className="container mx-auto py-8">
+      {/* HERO */}
+      {featuredNavData && (
+        <IndexSectionLayout type="nav" data={featuredNavData} />
+      )}
+      {featuredCoursesData && (
+        <IndexSectionLayout
+          type="course"
+          data={featuredCoursesData}
+          title="Featured Courses"
+          buttonText="Courses"
+        />
+      )}
+      {featuredNewsData && (
+        <IndexSectionLayout
+          type="news"
+          data={featuredNewsData}
+          title="Latest News"
+          buttonText="News"
+        />
+      )}
+    </main>
   );
 };
 
 export default Index;
-
-// const Index = () => {
-//   return (
-//     <main>
-//       Home
-
-//       {/* HERO */}
-
-//       {/* Home navigation cards */}
-
-//       {/* Featured course cards */}
-
-//       {/* News cards */}
-//     </main>
-//   )
-// }
-
-// export default Index
