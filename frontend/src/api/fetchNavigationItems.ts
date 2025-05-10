@@ -4,6 +4,12 @@ export interface NavigationItem {
   order: number;
 }
 
+interface ApiResponseItem {
+    title: string;
+    url: string;
+    order: number;
+  }
+
 export async function getNavigationItems(): Promise<NavigationItem[]> {
     try {
         const response = await fetch(
@@ -12,10 +18,16 @@ export async function getNavigationItems(): Promise<NavigationItem[]> {
         if (!response.ok) {
             throw new Error("Failed to fetch navigation items");
         }
-        const data = await response.json();
-        return data.sort(
-            (a: { order: number }, b: { order: number }) => a.order - b.order
-        );
+        const responseData = await response.json();
+        const navigationItems:ApiResponseItem[] = responseData.data;
+
+        return navigationItems.map((item: ApiResponseItem) => ({
+            title: item.title,
+            url: item.url,
+            order: item.order,
+        }))
+        .sort((a: NavigationItem, b: NavigationItem) => a.order - b.order);
+       
     }
     catch (error) {
         console.error("Error fetching navigation items:", error);
