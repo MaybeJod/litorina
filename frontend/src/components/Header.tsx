@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Logo from "./Logo";
+import Logo from "@/components/custom/Logo";
 import { getNavigationItems } from "@/api/fetchNavigationItems";
 import type { NavigationItem } from "@/api/fetchNavigationItems";
 import {
