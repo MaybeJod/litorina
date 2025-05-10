@@ -10,14 +10,14 @@ const fetchFeaturedCourses = async (): Promise<Course[]> => {
 
     const jsonData = await response.json();
 
-    const navItems = jsonData.data.map((item: any) => ({
+    const courses = jsonData.data.map((item: any) => ({
       id: item.id,
       title: item.title,
       summary: item.summary,
       isFeatured: item.isFeatured,
     }));
 
-    return navItems.filter((course: Course) => course.isFeatured === true).slice(0,4);
+    return courses.filter((course: Course) => course.isFeatured === true).slice(0,4);
   } catch (error) {
     console.error("Error fetching home navigation items:", error);
     return [];
