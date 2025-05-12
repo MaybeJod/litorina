@@ -28,8 +28,10 @@ const Index: React.FC = () => {
 
       if (featuredNavResponse.status === "fulfilled")
         setFeaturedNavData(featuredNavResponse.value);
+
       if (featuredCoursesResponse.status === "fulfilled")
         setFeaturedCoursesData(featuredCoursesResponse.value);
+      
       if (featuredNewsResponse.status === "fulfilled")
         setFeaturedNewsData(featuredNewsResponse.value);
     };
