@@ -3,6 +3,7 @@ import type { Media } from "./MediaInterface";
 
 interface News {
   id: number;
+  documentId: string;
   title: string;
   description: RichText[];
   publishedDate: string | null;

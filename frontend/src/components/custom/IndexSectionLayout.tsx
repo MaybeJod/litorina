@@ -52,6 +52,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
                     ? `http://litorina.onrender.com${item.media?.formats?.small?.url}`
                     : "https://placehold.co/400"
                 }
+                documentId={(item as Course).documentId}
               />
             ) : (
               <Card>
