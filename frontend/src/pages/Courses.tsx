@@ -1,6 +1,26 @@
+import fetchCourses from "@/api/fetchCourses";
+import { CourseCard } from "@/components/custom/CourseCard";
+import { useEffect, useState } from "react";
 import FilterCategory from "@/components/FilterCategory";
 
+import type { Course } from "@/interfaces/CourseInterface";
+
 const Courses = () => {
+  const [courseData, setCourseData] = useState<Course[] | null>(null);
+
+  useEffect(() => {
+    const fetchCourseData = async () => {
+      try {
+        const data = await fetchCourses();
+        setCourseData(data);
+      } catch (error) {
+        setCourseData(null);
+      }
+    };
+
+    fetchCourseData();
+  }, []);
+
   return (
     <main className="flex flex-col items-center ">
       {/* banner section */}
@@ -17,6 +37,22 @@ const Courses = () => {
 
       {/* filter component */}
       <FilterCategory />
+
+      {/* course grid section */}
+      <section className="grid grid-cols-[repeat(auto-fill,minmax(max(200px,calc((100%_-_3.75rem)/4)),1fr))] gap-5 w-[min(1000px,_100%)] mt-10">
+        {courseData?.map((course) => (
+          <CourseCard
+            key={course.id}
+            title={course.title}
+            documentId={course.documentId}
+            imageUrl={
+              course.media?.formats?.thumbnail?.url
+                ? `http://litorina.onrender.com${course.media?.formats?.thumbnail?.url}`
+                : "https://placehold.co/400"
+            }
+          />
+        ))}
+      </section>
     </main>
   );
 };

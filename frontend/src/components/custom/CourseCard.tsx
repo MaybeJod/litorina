@@ -7,6 +7,8 @@ interface CourseCardProps {
 }
 
 export const CourseCard = ({ course }: CourseCardProps) => {
+  if (!course) return null;
+
   const { title, imageUrl, documentId } = course;
 
   return (
