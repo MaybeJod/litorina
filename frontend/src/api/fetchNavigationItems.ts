@@ -1,15 +1,4 @@
-export interface NavigationItem {
-  title: string;
-  url: string;
-  order: number;
-  id: number;
-}
-
-// interface ApiResponseItem {
-//     title: string;
-//     url: string;
-//     order: number;
-//   }
+import type { NavigationItem } from "@/interfaces/NavigationItems";
 
 export async function getNavigationItems(): Promise<NavigationItem[]> {
   try {
