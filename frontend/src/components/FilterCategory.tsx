@@ -3,7 +3,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { fetchCategories, fetchCoursesByCategory } from "@/api/fetchCategories";
 import type { Category } from "@/interfaces/CategoryInterface";
 import type { Course } from "@/interfaces/CourseInterface";
-import { CourseCard } from "@/components/CourseCard2";
+import { CourseCard } from "@/components/custom/CourseCard";
 
 const FilterCategory: React.FC = () => {
   const [category, setCategory] = useState<string>();
