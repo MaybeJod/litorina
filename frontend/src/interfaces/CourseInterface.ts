@@ -1,4 +1,5 @@
 import type { RichText } from "./RichTextInterface";
+import type { Media } from "./MediaInterface";
 
 interface Course {
   id: number;
@@ -7,8 +8,8 @@ interface Course {
   description: RichText[];
   summary: string | null;
   isFeatured: boolean | null;
+  media: Media | null;
   category: any;
-  imageUrl: string | null;
 }
 
 export type { Course };
