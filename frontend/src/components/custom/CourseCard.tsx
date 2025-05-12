@@ -3,9 +3,9 @@ import { Card, CardHeader, CardFooter, CardTitle } from "./CustomCourseCard";
 import type { Course } from "@/interfaces/CourseInterface";
 
 
-export default function CourseCard({ title, imageUrl, courseId }: Course) {
+export default function CourseCard({ title, imageUrl, documentId }: Course) {
   return (
-    <Link to={`/courses/${id}`} className="block">
+    <Link to={`/courses/${documentId}`} className="block">
       <Card className="w-full hover:shadow-lg transition-shadow duration-300">
         {/* Image Section */}
         <CardHeader className="p-0">
