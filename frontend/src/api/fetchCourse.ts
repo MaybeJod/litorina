@@ -13,6 +13,7 @@ const fetchCourseById = async (id: number): Promise<Course | null> => {
 
     const course: Course = {
       id: jsonData.data.id,
+      documentId: jsonData.data.documentId,
       title: jsonData.data.title,
       summary: jsonData.data.summary,
       description: jsonData.data.description,
