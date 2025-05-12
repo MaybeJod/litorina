@@ -11,10 +11,8 @@ const Courses = () => {
     const fetchCourseData = async () => {
       try {
         const data = await fetchCourses();
-        console.log("data here lol:" + data);
         setCourseData(data);
       } catch (error) {
-        console.error("error:" + error);
         setCourseData(null);
       }
     };
