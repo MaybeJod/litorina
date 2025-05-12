@@ -1,3 +1,5 @@
+import FilterCategory from "@/components/FilterCategory";
+
 const Courses = () => {
   return (
     <main className="flex flex-col items-center ">
@@ -14,29 +16,7 @@ const Courses = () => {
       <h1 className="text-6xl text-center m-6 font-bold">COURSES</h1>
 
       {/* filter component */}
-      <div className="flex gap-1 border-2 border-grays-600 border-solid p-3 flex-wrap">
-        <div className="w-40 h-10 border-1 border-blue-400"></div>
-        <div className="w-40 h-10 border-1 border-blue-400"></div>
-        <div className="w-40 h-10 border-1 border-blue-400"></div>
-        <div className="w-40 h-10 border-1 border-blue-400"></div>
-        <div className="w-40 h-10 border-1 border-blue-400"></div>
-      </div>
-
-      {/* course grid section */}
-      <section className="grid grid-cols-[repeat(auto-fill,minmax(max(200px,calc((100%_-_3.75rem)/4)),1fr))] gap-5 w-[min(1000px,_100%)] mt-10">
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-        <div className="w-full aspect-square border-1 border-black rounded-2xl"></div>
-      </section>
+      <FilterCategory />
     </main>
   );
 };
