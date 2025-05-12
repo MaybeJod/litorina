@@ -1,11 +1,11 @@
-import Header from "@/components/Header";
+import Header from "@/components/custom/Header";
 import Index from "./pages/Index";
 
 function App() {
   return (
     <>
       <Header />
-      <Index />;
+      <Index />
     </>
   );
 }
