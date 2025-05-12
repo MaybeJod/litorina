@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import fetchFeaturedNavigation from "@/api/fetchFeaturedNavigation";
 import fetchFeaturedCourses from "@/api/fetchFeaturedCourses";
 import fetchFeaturedNews from "@/api/fetchFeaturedNews";
-import IndexSectionLayout from "@/components/IndexSectionLayout";
+import IndexSectionLayout from "@/components/custom/IndexSectionLayout";
 
 const Index: React.FC = () => {
   const [featuredNavData, setFeaturedNavData] = useState<Nav[] | null>(null);
