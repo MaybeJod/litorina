@@ -17,6 +17,8 @@ const fetchCourseById = async (id: number): Promise<Course | null> => {
       summary: jsonData.data.summary,
       description: jsonData.data.description,
       isFeatured: jsonData.data.isFeatured,
+      category: jsonData.data.category,
+      imageUrl: jsonData.data.imageUrl,
     };
 
     return course;
