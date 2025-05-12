@@ -23,8 +23,5 @@
   "homepage": "https://github.com/MaybeJod/litorina#readme",
   "devDependencies": {
     "concurrently": "^9.1.2"
-  },
-  "dependencies": {
-    "react-router-dom": "^7.6.0"
   }
 }
