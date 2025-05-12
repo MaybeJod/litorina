@@ -7,7 +7,7 @@ interface Course {
   description: RichText[];
   summary: string | null;
   isFeatured: boolean | null;
-  category: Category;
+  category: any;
   imageUrl: string | null;
 }
 
