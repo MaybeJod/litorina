@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import type { Course } from "@/interfaces/FilterInterface";
+import type { Course } from "@/interfaces/CourseInterface";
 
 export const CourseCard = ({ course }: { course: Course }) => (
   <Card key={course.id} className="rounded-2xl shadow-md">
