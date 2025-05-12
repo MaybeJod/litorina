@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardFooter, CardTitle } from "./CustomCourseCard";
-import type { Course } from "@/interfaces/CourseInterface";
 
-
-export default function CourseCard({ title, imageUrl, documentId }: Course) {
+export default function CourseCard({
+  title,
+  imageUrl,
+  documentId,
+}: {
+  title: string;
+  imageUrl: string;
+  documentId: string;
+}) {
   return (
     <Link to={`/courses/${documentId}`} className="block">
       <Card className="w-full hover:shadow-lg transition-shadow duration-300">
