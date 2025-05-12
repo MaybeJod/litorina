@@ -1,4 +1,4 @@
-import type { NavigationItem } from "@/interfaces/NavigationItems";
+import type { NavigationItem } from "../interfaces/NavitemsInreface";
 
 export async function getNavigationItems(): Promise<NavigationItem[]> {
   try {
