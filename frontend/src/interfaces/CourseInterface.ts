@@ -6,6 +6,8 @@ interface Course {
   description: RichText[];
   summary: string | null;
   isFeatured: boolean | null;
+  category: Category;
+  imageUrl: string | null;
 }
 
 export type { Course };
