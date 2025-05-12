@@ -31,12 +31,12 @@ const FilterCategory: React.FC = () => {
   }, [category]);
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-[70rem] mx-auto p-6">
       <ToggleGroup
         type="single"
         value={category}
         onValueChange={(val) => val && setCategory(val)}
-        className="flex flex-wrap gap-2 mb-6"
+        className="w-fit mx-auto flex flex-wrap gap-2 mb-6"
       >
         {categories.map((cat) => (
           <ToggleGroupItem
@@ -52,7 +52,7 @@ const FilterCategory: React.FC = () => {
       {loading ? (
         <p>Loading...</p>
       ) : (
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {courses.length > 0 ? (
             courses.map((course) => (
               <CourseCard key={course.id} course={course} />
