@@ -4,5 +4,5 @@ export interface HomeNavigationCardItem {
   image: string;
   url: string;
   order: number;
-  isFeatured: boolean; // ✅ Add this line
+  isFeatured: boolean;
 }

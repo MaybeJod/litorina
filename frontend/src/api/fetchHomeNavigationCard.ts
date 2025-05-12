@@ -1,9 +1,6 @@
 import type {  HomeNavigationCardItem } from "@/interfaces/HomeNavigationCardInterface";
 
-/**
- * Fetches home navigation cards from the Strapi CMS.
- * Filters cards that are marked as featured and returns the top 4.
- */
+
 const fetchHomeNavigationCard = async (): Promise< HomeNavigationCardItem[]> => {
   try {
     const response = await fetch(
