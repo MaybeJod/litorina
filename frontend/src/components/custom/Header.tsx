@@ -30,10 +30,10 @@ const Header = () => {
   };
 
   return (
-    <header className="container mx-auto py-8 flex justify-between items-center">
+    <header className="container mx-auto py-8 flex justify-between items-center text-base">
       <Logo />
-      <NavigationMenu>
-        <NavigationMenuList>
+      <NavigationMenu >
+        <NavigationMenuList className="flex lg:gap-4">
           {navItems.map((item) => {
             const isActive = location.pathname === item.url;
             return (
@@ -42,7 +42,9 @@ const Header = () => {
                   <Link
                     to={item.url}
                     className={
-                      isActive ? "text-gray-900 font-medium" : "text-gray-500"
+                      isActive
+                        ? " text-[var(--text-color-accent)] font-medium"
+                        : "text-[var(--text-color-primary)]"
                     }
                   >
                     {item.title}
@@ -52,8 +54,8 @@ const Header = () => {
             );
           })}
           <NavigationMenuItem className="flex gap-2">
-            <Globe className="w-6 h-auto" />
-            <button onClick={toggleLanguage}>
+            <Globe className="w-6 h-auto text-[var(--text-color-globe-icon)]" />
+            <button onClick={toggleLanguage} className="text-[var(--text-color-primary)]">
               {lang === "English" ? "Svenska" : "English"}
             </button>
           </NavigationMenuItem>
