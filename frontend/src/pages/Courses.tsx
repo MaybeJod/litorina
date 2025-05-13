@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Skeleton } from "@/components/ui/skeleton";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown } from "lucide-react";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import fetchCourses from "@/api/fetchCourses";
 import { fetchCategories, fetchCoursesByCategory } from "@/api/fetchCategories";
 import CourseCard from "@/components/custom/CourseCard";
@@ -12,6 +20,10 @@ const Courses = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [loading, setLoading] = useState(true);
+
+  //state to track the current category name for dropdown display
+  const [currentCategoryName, setCurrentCategoryName] = useState("All Courses");
+  const isMobile = useMediaQuery("(max-width: 900px)");
 
   useEffect(() => {
     const loadCategories = async () => {
@@ -33,9 +45,14 @@ const Courses = () => {
         if (selectedCategory === "all") {
           const data = await fetchCourses();
           setCourseData(data);
+          setCurrentCategoryName("All Courses");
         } else {
           const data = await fetchCoursesByCategory(selectedCategory);
           setCourseData(data);
+          const category = categories.find(
+            (cat) => cat.slug === selectedCategory
+          );
+          if (category) setCurrentCategoryName(category.title);
         }
       } catch (error) {
         console.error("Failed to fetch courses", error);
@@ -46,7 +63,13 @@ const Courses = () => {
     };
 
     fetchCourseData();
-  }, [selectedCategory]);
+  }, [selectedCategory, categories]);
+
+  const handleCategoryChange = (value: string) => {
+    if (value) {
+      setSelectedCategory(value);
+    }
+  };
 
   return (
     <main className="flex flex-col items-center">
@@ -64,86 +87,77 @@ const Courses = () => {
 
       {/* filter and courses section */}
       <div className="max-w-[70rem] mx-auto w-full px-6">
-        {/* Category filter */}
         <div className="w-full flex justify-center mb-6">
-          <ToggleGroup
-            type="single"
-            value={selectedCategory}
-            onValueChange={(value) => value && setSelectedCategory(value)}
-            className="w-fit mx-auto flex flex-wrap gap-1 max-[1000px]:flex-col "
-          >
-            {/* All Courses button as the first item */}
-            <ToggleGroupItem
-              value="all"
-              className="data-[state=on]:bg-[#5EAFAD] data-[state=on]:text-white hover:bg-[var(--index-section-background)] hover:text-black px-4 py-2 cursor-pointer"
+          {isMobile ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center gap-2 px-4 py-2 bg-[#f0f0f0] hover:bg-[var(--index-section-background)] rounded-md border border-gray-200">
+                {currentCategoryName} <ChevronDown className="h-4 w-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem
+                  onClick={() => handleCategoryChange("all")}
+                  className={`cursor-pointer hover:bg-[var(--index-section-background)] ${
+                    selectedCategory === "all"
+                      ? "font-bold bg-[#5EAFAD] text-white"
+                      : ""
+                  }`}
+                >
+                  All Courses
+                </DropdownMenuItem>
+                {categories.map((cat) => (
+                  <DropdownMenuItem
+                    key={cat.id}
+                    onClick={() => handleCategoryChange(cat.slug)}
+                    className={`cursor-pointer hover:bg-[var(--index-section-background)]${
+                      selectedCategory === cat.slug
+                        ? "font-bold bg-[#5EAFAD] text-white"
+                        : ""
+                    }`}
+                  >
+                    {cat.title}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <ToggleGroup
+              type="single"
+              value={selectedCategory}
+              onValueChange={(value) => value && handleCategoryChange(value)}
+              className="w-fit mx-auto flex flex-wrap gap-1"
             >
-              All Courses
-            </ToggleGroupItem>
-
-            {categories.map((cat) => (
               <ToggleGroupItem
-                key={cat.id}
-                value={cat.slug}
+                value="all"
                 className="data-[state=on]:bg-[#5EAFAD] data-[state=on]:text-white hover:bg-[var(--index-section-background)] hover:text-black px-4 py-2 cursor-pointer"
               >
-                {cat.title}
+                All Courses
               </ToggleGroupItem>
-            ))}
-          </ToggleGroup>
+
+              {categories.map((cat) => (
+                <ToggleGroupItem
+                  key={cat.id}
+                  value={cat.slug}
+                  className="data-[state=on]:bg-[#5EAFAD] data-[state=on]:text-white hover:bg-[var(--index-section-background)] hover:text-black px-4 py-2 cursor-pointer"
+                >
+                  {cat.title}
+                </ToggleGroupItem>
+              ))}
+            </ToggleGroup>
+          )}
         </div>
 
         {/* Course grid */}
         {loading ? (
           <div className="container mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="flex flex-col space-y-3">
-              <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
+            {[...Array(8)].map((_, index) => (
+              <div key={index} className="flex flex-col space-y-3">
+                <Skeleton className="h-[125px] w-full rounded-xl" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-4/5" />
+                </div>
               </div>
-            </div>
-            <div className="flex flex-col space-y-3">
-              <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
-              </div>
-            </div>
-            <div className="flex flex-col space-y-3">
-              <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
-              </div>
-            </div>
-            <div className="flex flex-col space-y-3">
-              <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
-              </div>
-            </div>
-            <div className="flex flex-col space-y-3">
-              <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
-              </div>
-            </div>
-            <div className="flex flex-col space-y-3">
-              <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
-              </div>
-            </div>
-            <div className="flex flex-col space-y-3">
-              <Skeleton className="h-[125px] w-[250px] rounded-xl" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
-              </div>
-            </div>
+            ))}
           </div>
         ) : (
           <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
