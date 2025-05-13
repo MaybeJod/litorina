@@ -1,14 +1,14 @@
 import { useEffect, useState, type JSX } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import App from "../App";
-import Courses from "../pages/Courses";
+import type { RouteObject } from "react-router-dom";
 import { getNavigationItems } from "../api/fetchNavigationItems";
 import Course from "@/pages/Course";
+import MainLayout from "@/layout/MainLayout";
+import Courses from "../pages/Courses";
+import Index from "../pages/Index";
 
 const DynamicRouter = () => {
-  const [routes, setRoutes] = useState<
-    { path: string; element: JSX.Element }[]
-  >([]);
+  const [routes, setRoutes] = useState<RouteObject[]>([]);
 
   useEffect(() => {
     const fetchRoutes = async () => {
@@ -32,8 +32,11 @@ const DynamicRouter = () => {
       });
 
       setRoutes([
-        { path: "/", element: <App /> },
-        ...dynamicRoutes,
+        {
+          path: "/",
+          element: <MainLayout />,
+          children: [{ path: "/", element: <Index /> }, ...dynamicRoutes],
+        },
         { path: "*", element: <div>404 - Page Not Found</div> },
       ]);
     };
