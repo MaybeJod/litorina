@@ -18,7 +18,7 @@ export default function CourseCard({
           <img
             src={imageUrl || "https://placehold.co/400"} // Placeholder image
             alt={title}
-            className="w-full h-48 object-cover rounded-t-lg"
+            className="w-full h-48 object-cover rounded-lg"
           />
         </CardHeader>
 
