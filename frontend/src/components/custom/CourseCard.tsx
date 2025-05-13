@@ -13,19 +13,16 @@ export default function CourseCard({
   return (
     <Link to={`/courses/${documentId}`} className="block">
       <Card className="w-full hover:shadow-lg transition-shadow duration-300">
-        {/* Image Section */}
         <CardHeader className="p-0">
           <img
-            src={imageUrl || "https://placehold.co/400"} // Placeholder image
+            src={imageUrl || "https://placehold.co/400"}
             alt={title}
             className="w-full h-48 object-cover rounded-lg"
           />
         </CardHeader>
-
-        {/* Title Section */}
         <CardFooter className="p-4">
           <CardTitle
-            className="text-l text-center font-semibold truncate"
+            className="text-l text-center font-semibold overflow-x-clip text-ellipsis whitespace-nowrap"
             title={title}
           >
             {title}
