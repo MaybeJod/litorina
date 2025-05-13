@@ -1,5 +1,6 @@
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
+import type { Mock } from "vitest";
 import '@testing-library/jest-dom';
 import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
 import Courses from "../Courses";
@@ -34,9 +35,9 @@ const mockFrontendCourses = [
 
 describe("Courses Page", () => {
   it("filters courses by category", async () => {
-    (fetchCategories as vi.Mock).mockResolvedValue(mockCategories);
-    (fetchCourses as vi.Mock).mockResolvedValue(mockAllCourses);
-    (fetchCoursesByCategory as vi.Mock).mockResolvedValue(mockFrontendCourses);
+    (fetchCategories as Mock).mockResolvedValue(mockCategories);
+    (fetchCourses as Mock).mockResolvedValue(mockAllCourses);
+    (fetchCoursesByCategory as Mock).mockResolvedValue(mockFrontendCourses);
 
     render(
       <BrowserRouter> {/* Wrap Courses with BrowserRouter */}
