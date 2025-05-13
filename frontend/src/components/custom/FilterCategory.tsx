@@ -4,6 +4,7 @@ import { fetchCategories, fetchCoursesByCategory } from "@/api/fetchCategories";
 import type { Category } from "@/interfaces/CategoryInterface";
 import type { Course } from "@/interfaces/CourseInterface";
 import CourseCard from "@/components/custom/CourseCard";
+import fetchCourses from "@/api/fetchCourses";
 
 const FilterCategory: React.FC = () => {
   const [category, setCategory] = useState<string>();
@@ -24,10 +25,27 @@ const FilterCategory: React.FC = () => {
     if (!category) return;
 
     setLoading(true);
-    fetchCoursesByCategory(category)
-      .then((data) => setCourses(data))
-      .catch((err) => console.error("Failed to fetch courses", err))
-      .finally(() => setLoading(false));
+
+    const fetchData = async () => {
+      try {
+        let data: Course[] = [];
+
+        if (category === "all") {
+          console.log("Fetching all courses");
+          data = await fetchCourses();
+        } else {
+          data = await fetchCoursesByCategory(category);
+        }
+
+        setCourses(data);
+      } catch (err) {
+        console.error("Failed to fetch courses", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [category]);
 
   return (
@@ -38,6 +56,12 @@ const FilterCategory: React.FC = () => {
         onValueChange={(val) => val && setCategory(val)}
         className="w-fit mx-auto flex flex-wrap gap-2 mb-6"
       >
+        <ToggleGroupItem
+          value="all"
+          className="bg-yellow-200 data-[state=on]:bg-yellow-300 px-4 py-2 rounded-md"
+        >
+          All Courses
+        </ToggleGroupItem>
         {categories.map((cat) => (
           <ToggleGroupItem
             key={cat.id}
