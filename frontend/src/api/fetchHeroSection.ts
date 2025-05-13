@@ -6,12 +6,11 @@ export const fetchHeroSection = async (): Promise<HeroSection | null> => {
       "https://litorina.onrender.com/api/hero-section?populate=*"
     );
     if (!response.ok) {
-        throw new Error("Failed to fetch hero section items");
-      }
+      throw new Error("Failed to fetch hero section items");
+    }
     const json = await response.json();
-    console.log("Hero section data:", json);
+
     const item = json.data;
-    console.log("Hero section item:", item);
 
     return {
       buttonText: item.buttonText,

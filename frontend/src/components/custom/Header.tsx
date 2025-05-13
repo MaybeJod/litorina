@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "@/components/custom/Logo";
 import { getNavigationItems } from "@/api/fetchNavigationItems";
-import type { NavigationItem } from "@/interfaces/NavitemsInreface";
+import type { NavigationItem } from "@/interfaces/NavitemsInterface";
 import {
   NavigationMenu,
   NavigationMenuList,
