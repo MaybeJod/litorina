@@ -3,14 +3,16 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "../App";
 import Courses from "../pages/Courses";
 import { getNavigationItems } from "../api/fetchNavigationItems";
+import Course from "@/pages/Course";
 
 const DynamicRouter = () => {
-  const [routes, setRoutes] = useState<{ path: string; element: JSX.Element }[]>([]);
+  const [routes, setRoutes] = useState<
+    { path: string; element: JSX.Element }[]
+  >([]);
 
   useEffect(() => {
     const fetchRoutes = async () => {
       const navigationItems = await getNavigationItems();
-      
 
       const componentMap: Record<string, JSX.Element> = {
         "/courses": <Courses />,
@@ -23,6 +25,11 @@ const DynamicRouter = () => {
         path: item.url,
         element: componentMap[item.url] || <div>{item.title}</div>,
       }));
+
+      dynamicRoutes.push({
+        path: "/courses/:documentId",
+        element: <Course />,
+      });
 
       setRoutes([
         { path: "/", element: <App /> },
