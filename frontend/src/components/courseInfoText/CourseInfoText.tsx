@@ -1,21 +1,23 @@
-
 import React, { useEffect, useState } from "react";
 import fetchCourseById from "@/api/fetchCourse";
+
+interface Course {
+  title: string;
+  description: any[]; 
+}
 
 interface CourseInfoTextProps {
   documentId: string;
 }
 
 const CourseInfoText: React.FC<CourseInfoTextProps> = ({ documentId }) => {
-  const [course, setCourse] = useState<any>(null);
+  const [course, setCourse] = useState<Course | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  
-  const renderRichText = (node: any): JSX.Element | string | null => {
+  const renderRichText = (node: any): React.ReactNode => {
     if (!node) return null;
 
-  
     if (node.type === "text") {
       let content: React.ReactNode = node.text;
 
@@ -85,7 +87,7 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ documentId }) => {
     <div>
       <h1>{course.title}</h1>
       {Array.isArray(course.description) &&
-        course.description.map((node: any, index: number) => (
+        course.description.map((node, index) => (
           <div key={index}>{renderRichText(node)}</div>
         ))}
     </div>
@@ -93,3 +95,4 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ documentId }) => {
 };
 
 export default CourseInfoText;
+
