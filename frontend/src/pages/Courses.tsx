@@ -72,7 +72,7 @@ const Courses = () => {
   };
 
   return (
-    <main className="flex flex-col items-center">
+    <>
       {/* banner section */}
       <section className="w-full">
         <img
@@ -185,7 +185,7 @@ const Courses = () => {
           </section>
         )}
       </div>
-    </main>
+    </>
   );
 };
 
