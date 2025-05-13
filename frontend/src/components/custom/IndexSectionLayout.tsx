@@ -16,6 +16,7 @@ import CourseCard from "./CourseCard";
 interface SectionProps {
   type: "nav" | "course" | "news";
   data: Nav[] | Course[] | News[] | null;
+  backgroundColor?: boolean;
   title?: string;
   buttonText?: string;
 }
@@ -23,6 +24,7 @@ interface SectionProps {
 const IndexSectionLayout: React.FC<SectionProps> = ({
   type,
   data,
+  backgroundColor,
   title,
   buttonText,
 }) => {
@@ -37,11 +39,15 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
     type === "course" ? "courses" : type === "news" ? "news" : "";
 
   return (
-    <section className="py-8">
+    <section
+      className={`${
+        backgroundColor ? "bg-[var(--index-section-background)]" : ""
+      } py-8`}
+    >
       {sectionTitle && (
-        <h2 className="text-2xl font-bold mb-4">{sectionTitle}</h2>
+        <h2 className="text-center text-2xl font-bold mb-8">{sectionTitle}</h2>
       )}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="container mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {data.map((item) => (
           <React.Fragment key={item.id}>
             {type === "course" ? (
@@ -49,7 +55,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
                 title={item.title}
                 imageUrl={
                   item.media?.formats?.thumbnail?.url
-                    ? `http://litorina.onrender.com${item.media?.formats?.small?.url}`
+                    ? `http://litorina.onrender.com${item.media?.formats?.thumbnail?.url}`
                     : "https://placehold.co/400"
                 }
                 documentId={(item as Course).documentId}
@@ -91,7 +97,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
       </div>
       {(type === "course" || type === "news") && data && (
         <div className="mt-6 text-center">
-          <Button asChild>
+          <Button className="rounded-full bg-[var(--button-primary)]" asChild>
             <Link to={sectionLink}>See All {buttonText || sectionTitle}</Link>
           </Button>
         </div>
