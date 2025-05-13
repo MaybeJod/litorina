@@ -1,14 +1,8 @@
-import type { Media } from "@/interfaces/MediaInterface";
+import type { Course } from "@/interfaces/CourseInterface";
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardFooter, CardTitle } from "./CustomCourseCard";
 
-interface CourseCardProps {
-  documentId: string;
-  title: string;
-  media: Media | null;
-}
-
-const CourseCard = ({ title, media, documentId }: CourseCardProps) => {
+export default function CourseCard ({ title, media, documentId }: Course) {
   const imageUrl = media?.formats?.thumbnail?.url
     ? `http://litorina.onrender.com${media?.formats?.thumbnail?.url}`
     : "https://placehold.co/0";
@@ -36,4 +30,3 @@ const CourseCard = ({ title, media, documentId }: CourseCardProps) => {
   );
 };
 
-export default CourseCard;
