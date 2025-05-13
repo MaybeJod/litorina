@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
-import { Card, CardHeader, CardTitle } from "./CustomNavigationCard"; // Removed CardFooter
+import { Card, CardHeader, CardTitle } from "./CustomNavigationCard";
 import type { Nav } from "@/interfaces/NavInterface";
 
-export default function HomeNavigationCard({
+export default function IndexNavigationCard({
   title,
   url,
   media,
 }: Pick<Nav, "title" | "url" | "media">) {
-  const imageUrl =
-    media?.url || "https://placehold.co/400x300?text=Navigation+Card";
+  const imageUrl = media?.formats?.thumbnail?.url
+    ? `http://litorina.onrender.com${media?.formats?.thumbnail?.url}`
+    : "https://placehold.co/400";
 
   return (
     <Link to={url} className="block">
