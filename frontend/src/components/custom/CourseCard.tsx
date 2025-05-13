@@ -25,7 +25,7 @@ export default function CourseCard({
         {/* Title Section */}
         <CardFooter className="p-4">
           <CardTitle
-            className="text-l text-center font-semibold truncate"
+            className="text-l text-center font-semibold overflow-x-clip text-ellipsis whitespace-nowrap"
             title={title}
           >
             {title}
