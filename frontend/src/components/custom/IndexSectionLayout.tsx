@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import CourseCard from "./CourseCard";
+import IndexNavigationCard from "./IndexNavigationCard";
 
 interface SectionProps {
   type: "nav" | "course" | "news";
@@ -50,7 +51,10 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
       <div className="container mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {data.map((item) => (
           <React.Fragment key={item.id}>
-            {type === "course" ? (
+            {type === "nav" && (
+              <IndexNavigationCard title={item.title} url={(item as Nav).url} media={item.media}  />
+            )}
+            {type === "course" && (
               <CourseCard
                 title={item.title}
                 imageUrl={
@@ -60,35 +64,25 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
                 }
                 documentId={(item as Course).documentId}
               />
-            ) : (
+            )}
+            {type === "news" && (
               <Card>
                 <CardHeader>
-                  {type === "nav" && (
-                    <CardTitle>
-                      <a href={(item as Nav).url} className="hover:underline">
-                        {(item as Nav).title}
-                      </a>
-                    </CardTitle>
-                  )}
-                  {type === "news" && (
-                    <CardTitle>{(item as News).title}</CardTitle>
-                  )}
+                  <CardTitle>{(item as News).title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {type === "news" && (
-                    <CardDescription>
-                      {(item as News).description[0]?.children
-                        .map((child) => child.text)
-                        .join("")
-                        .substring(0, 100)}
-                      ...
-                      {(item as News).publishedDate && (
-                        <p className="text-muted-foreground text-xs mt-2">
-                          Published on: {(item as News).publishedDate}
-                        </p>
-                      )}
-                    </CardDescription>
-                  )}
+                  <CardDescription>
+                    {(item as News).description[0]?.children
+                      .map((child) => child.text)
+                      .join("")
+                      .substring(0, 100)}
+                    ...
+                    {(item as News).publishedDate && (
+                      <p className="text-muted-foreground text-xs mt-2">
+                        Published on: {(item as News).publishedDate}
+                      </p>
+                    )}
+                  </CardDescription>
                 </CardContent>
               </Card>
             )}
