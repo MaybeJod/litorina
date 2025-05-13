@@ -1,28 +1,35 @@
 import type { Course } from "@/interfaces/CourseInterface";
 
-const fetchCourseById = async (id: number): Promise<Course | null> => {
+const fetchCourseById = async (documentId: string): Promise<Course | null> => {
   try {
     const response = await fetch(
-      `https://litorina.onrender.com/api/courses/${id}`
+      `https://litorina.onrender.com/api/courses?filters[documentId][$eq]=${documentId}&populate=*`
     );
 
     if (!response.ok) {
       throw new Error("Failed to fetch course");
     }
+
     const jsonData = await response.json();
 
-    const course: Course = {
-      id: jsonData.data.id,
-      documentId: jsonData.data.documentId,
-      title: jsonData.data.title,
-      summary: jsonData.data.summary,
-      description: jsonData.data.description,
-      isFeatured: jsonData.data.isFeatured,
-      category: jsonData.data.category,
-      media: jsonData.data.media,
-    };
+    if (jsonData.data && jsonData.data.length > 0) {
+      const course = jsonData.data[0];
 
-    return course;
+      const courseDetails: Course = {
+        id: course.id,
+        documentId: course.documentId,
+        title: course.title,
+        summary: course.summary,
+        description: course.description,
+        isFeatured: course.isFeatured,
+        category: course.category,
+        media: course.media,
+      };
+
+      return courseDetails;
+    }
+
+    return null;
   } catch (error) {
     console.error("Error fetching course:", error);
     return null;
