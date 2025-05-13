@@ -29,15 +29,24 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
   title,
   buttonText,
 }) => {
-  if (!data || data.length === 0) {
-    return <div className="py-8">No {type} items available.</div>;
-  }
-
   const sectionTitle =
     title || (type === "course" ? "Courses" : type === "news" ? "News" : "");
 
   const sectionLink =
     type === "course" ? "courses" : type === "news" ? "news" : "";
+
+  if (!data || data.length === 0) {
+    return (
+      <section
+        className={`${
+          backgroundColor ? "bg-[var(--index-section-background)]" : ""
+        } py-8`}
+      >
+        <h2 className="text-center text-2xl font-bold mb-8">{sectionTitle}</h2>
+        <p className="container mx-auto">No {type} items available.</p>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -45,24 +54,22 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
         backgroundColor ? "bg-[var(--index-section-background)]" : ""
       } py-8`}
     >
-      {sectionTitle && (
-        <h2 className="text-center text-2xl font-bold mb-8">{sectionTitle}</h2>
-      )}
+      <h2 className="text-center text-2xl font-bold mb-8">{sectionTitle}</h2>
       <div className="container mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {data.map((item) => (
           <React.Fragment key={item.id}>
             {type === "nav" && (
-              <IndexNavigationCard title={item.title} url={(item as Nav).url} media={item.media}  />
+              <IndexNavigationCard
+                title={item.title}
+                url={(item as Nav).url}
+                media={item.media}
+              />
             )}
             {type === "course" && (
               <CourseCard
-                title={item.title}
-                imageUrl={
-                  item.media?.formats?.thumbnail?.url
-                    ? `http://litorina.onrender.com${item.media?.formats?.thumbnail?.url}`
-                    : "https://placehold.co/400"
-                }
                 documentId={(item as Course).documentId}
+                title={item.title}
+                media={item.media}
               />
             )}
             {type === "news" && (
@@ -89,7 +96,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
           </React.Fragment>
         ))}
       </div>
-      {(type === "course" || type === "news") && data && (
+      {buttonText && data && (
         <div className="mt-6 text-center">
           <Button className="rounded-full bg-[var(--button-primary)]" asChild>
             <Link to={sectionLink}>See All {buttonText || sectionTitle}</Link>

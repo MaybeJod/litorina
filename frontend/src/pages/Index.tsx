@@ -40,10 +40,14 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <main className="py-8">
+    <>
       {/* HERO */}
       {featuredNavData && (
-        <IndexSectionLayout type="nav" data={featuredNavData} />
+        <IndexSectionLayout
+          type="nav"
+          data={featuredNavData}
+          title="Explore Litorina"
+        />
       )}
       {featuredCoursesData && (
         <IndexSectionLayout
@@ -57,12 +61,12 @@ const Index: React.FC = () => {
       {featuredNewsData && (
         <IndexSectionLayout
           type="news"
-          data={featuredNewsData}
+          data={null}
           title="Latest News"
           buttonText="News"
         />
       )}
-    </main>
+    </>
   );
 };
 
