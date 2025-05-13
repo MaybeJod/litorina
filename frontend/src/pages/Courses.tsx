@@ -167,14 +167,7 @@ const Courses = () => {
                   key={course.id}
                   title={course.title}
                   documentId={course.documentId}
-                  imageUrl={
-                    course.media?.url || course.media?.formats?.thumbnail?.url
-                      ? `http://litorina.onrender.com${
-                          course.media?.formats?.thumbnail?.url ||
-                          course.media?.url
-                        }`
-                      : "https://placehold.co/400"
-                  }
+                  media={course.media}
                 />
               ))
             ) : (
