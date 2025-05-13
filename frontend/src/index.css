@@ -76,7 +76,11 @@
   --sidebar-ring: oklch(0.708 0 0);
   --index-section-background: hsl(142, 31%, 93%);
   --button-primary: hsl(135, 32%, 12%);
+  --text-color-primary: #777E90;
+  --text-color-accent: #353945;
+  --text-color-globe-icon: 353945;
 }
+
 
 .dark {
   --background: oklch(0.145 0 0);
