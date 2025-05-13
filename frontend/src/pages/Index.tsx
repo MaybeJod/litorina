@@ -31,7 +31,7 @@ const Index: React.FC = () => {
 
       if (featuredCoursesResponse.status === "fulfilled")
         setFeaturedCoursesData(featuredCoursesResponse.value);
-      
+
       if (featuredNewsResponse.status === "fulfilled")
         setFeaturedNewsData(featuredNewsResponse.value);
     };
@@ -40,7 +40,7 @@ const Index: React.FC = () => {
   }, []);
 
   return (
-    <main className="container mx-auto py-8">
+    <main className="py-8">
       {/* HERO */}
       {featuredNavData && (
         <IndexSectionLayout type="nav" data={featuredNavData} />
@@ -49,6 +49,7 @@ const Index: React.FC = () => {
         <IndexSectionLayout
           type="course"
           data={featuredCoursesData}
+          backgroundColor={true}
           title="Featured Courses"
           buttonText="Courses"
         />
