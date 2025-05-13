@@ -74,7 +74,7 @@ const Courses = () => {
             {/* All Courses button as the first item */}
             <ToggleGroupItem
               value="all"
-              className="bg-yellow-200 data-[state=on]:bg-yellow-300 px-4 py-2 rounded-md"
+              className="data-[state=on]:bg-[#5EAFAD] data-[state=on]:text-white hover:bg-[var(--index-section-background)] hover:text-black px-4 py-2 cursor-pointer"
             >
               All Courses
             </ToggleGroupItem>
@@ -83,7 +83,7 @@ const Courses = () => {
               <ToggleGroupItem
                 key={cat.id}
                 value={cat.slug}
-                className="bg-yellow-200 data-[state=on]:bg-yellow-300 px-4 py-2 rounded-md"
+                className="data-[state=on]:bg-[#5EAFAD] data-[state=on]:text-white hover:bg-[var(--index-section-background)] hover:text-black px-4 py-2 cursor-pointer"
               >
                 {cat.title}
               </ToggleGroupItem>
@@ -93,7 +93,7 @@ const Courses = () => {
 
         {/* Course grid */}
         {loading ? (
-          <p className="text-center py-8">Loading courses...</p>
+          <p>Loading ...</p>
         ) : (
           <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {courseData.length > 0 ? (
