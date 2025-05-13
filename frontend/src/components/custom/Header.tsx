@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Logo from "@/components/custom/Logo";
 import { getNavigationItems } from "@/api/fetchNavigationItems";
-import type { NavigationItem } from "@/api/fetchNavigationItems";
+import type { NavigationItem } from "@/interfaces/NavitemsInreface";
 import {
   NavigationMenu,
   NavigationMenuList,
