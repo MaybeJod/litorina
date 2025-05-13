@@ -1,28 +1,54 @@
-import fetchCourses from "@/api/fetchCourses";
-import CourseCard from "@/components/custom/CourseCard";
 import { useEffect, useState } from "react";
-import FilterCategory from "@/components/custom/FilterCategory";
-
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import fetchCourses from "@/api/fetchCourses";
+import { fetchCategories, fetchCoursesByCategory } from "@/api/fetchCategories";
+import CourseCard from "@/components/custom/CourseCard";
 import type { Course } from "@/interfaces/CourseInterface";
+import type { Category } from "@/interfaces/CategoryInterface";
 
 const Courses = () => {
-  const [courseData, setCourseData] = useState<Course[] | null>(null);
+  const [courseData, setCourseData] = useState<Course[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const categoryData = await fetchCategories();
+        setCategories(categoryData);
+      } catch (error) {
+        console.error("Failed to fetch categories", error);
+      }
+    };
+
+    loadCategories();
+  }, []);
 
   useEffect(() => {
     const fetchCourseData = async () => {
+      setLoading(true);
       try {
-        const data = await fetchCourses();
-        setCourseData(data);
+        if (selectedCategory === "all") {
+          const data = await fetchCourses();
+          setCourseData(data);
+        } else {
+          const data = await fetchCoursesByCategory(selectedCategory);
+          setCourseData(data);
+        }
       } catch (error) {
-        setCourseData(null);
+        console.error("Failed to fetch courses", error);
+        setCourseData([]);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchCourseData();
-  }, []);
+  }, [selectedCategory]);
 
   return (
-    <main className="flex flex-col items-center ">
+    <main className="flex flex-col items-center">
       {/* banner section */}
       <section className="w-full">
         <img
@@ -35,24 +61,65 @@ const Courses = () => {
       {/* title */}
       <h1 className="text-6xl text-center m-6 font-bold">COURSES</h1>
 
-      {/* filter component */}
-      <FilterCategory />
+      {/* filter and courses section */}
+      <div className="max-w-[70rem] mx-auto w-full px-6">
+        {/* Category filter */}
+        <div className="w-full flex justify-center mb-6">
+          <ToggleGroup
+            type="single"
+            value={selectedCategory}
+            onValueChange={(value) => value && setSelectedCategory(value)}
+            className="w-fit mx-auto flex flex-wrap gap-1"
+          >
+            {/* All Courses button as the first item */}
+            <ToggleGroupItem
+              value="all"
+              className="bg-yellow-200 data-[state=on]:bg-yellow-300 px-4 py-2 rounded-md"
+            >
+              All Courses
+            </ToggleGroupItem>
 
-      {/* course grid section */}
-      <section className="grid grid-cols-[repeat(auto-fill,minmax(max(200px,calc((100%_-_3.75rem)/4)),1fr))] gap-5 w-[min(1000px,_100%)] mt-10">
-        {courseData?.map((course) => (
-          <CourseCard
-            key={course.id}
-            title={course.title}
-            documentId={course.documentId}
-            imageUrl={
-              course.media?.formats?.thumbnail?.url
-                ? `http://litorina.onrender.com${course.media?.formats?.thumbnail?.url}`
-                : "https://placehold.co/400"
-            }
-          />
-        ))}
-      </section>
+            {categories.map((cat) => (
+              <ToggleGroupItem
+                key={cat.id}
+                value={cat.slug}
+                className="bg-yellow-200 data-[state=on]:bg-yellow-300 px-4 py-2 rounded-md"
+              >
+                {cat.title}
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
+        </div>
+
+        {/* Course grid */}
+        {loading ? (
+          <p className="text-center py-8">Loading courses...</p>
+        ) : (
+          <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {courseData.length > 0 ? (
+              courseData.map((course) => (
+                <CourseCard
+                  key={course.id}
+                  title={course.title}
+                  documentId={course.documentId}
+                  imageUrl={
+                    course.media?.url || course.media?.formats?.thumbnail?.url
+                      ? `http://litorina.onrender.com${
+                          course.media?.formats?.thumbnail?.url ||
+                          course.media?.url
+                        }`
+                      : "https://placehold.co/400"
+                  }
+                />
+              ))
+            ) : (
+              <p className="col-span-full text-center py-8">
+                No courses found in this category.
+              </p>
+            )}
+          </section>
+        )}
+      </div>
     </main>
   );
 };
