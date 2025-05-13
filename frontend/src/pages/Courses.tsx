@@ -86,98 +86,96 @@ const Courses = () => {
       <h1 className="text-6xl text-center m-6 font-bold">COURSES</h1>
 
       {/* filter and courses section */}
-      <div className="max-w-[70rem] mx-auto w-full px-6">
-        <div className="w-full flex justify-center mb-6">
-          {isMobile ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-2 px-4 py-2 bg-[#f0f0f0] hover:bg-[var(--index-section-background)] rounded-md border border-gray-200">
-                {currentCategoryName} <ChevronDown className="h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
+      <div className="w-full flex justify-center mb-6">
+        {isMobile ? (
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-2 px-4 py-2 bg-[#f0f0f0] hover:bg-[var(--index-section-background)] rounded-md border border-gray-200">
+              {currentCategoryName} <ChevronDown className="h-4 w-4" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuItem
+                onClick={() => handleCategoryChange("all")}
+                className={`cursor-pointer hover:bg-[var(--index-section-background)] ${
+                  selectedCategory === "all"
+                    ? "font-bold bg-[#5EAFAD] text-white"
+                    : ""
+                }`}
+              >
+                All Courses
+              </DropdownMenuItem>
+              {categories.map((cat) => (
                 <DropdownMenuItem
-                  onClick={() => handleCategoryChange("all")}
-                  className={`cursor-pointer hover:bg-[var(--index-section-background)] ${
-                    selectedCategory === "all"
+                  key={cat.id}
+                  onClick={() => handleCategoryChange(cat.slug)}
+                  className={`cursor-pointer hover:bg-[var(--index-section-background)]${
+                    selectedCategory === cat.slug
                       ? "font-bold bg-[#5EAFAD] text-white"
                       : ""
                   }`}
                 >
-                  All Courses
+                  {cat.title}
                 </DropdownMenuItem>
-                {categories.map((cat) => (
-                  <DropdownMenuItem
-                    key={cat.id}
-                    onClick={() => handleCategoryChange(cat.slug)}
-                    className={`cursor-pointer hover:bg-[var(--index-section-background)]${
-                      selectedCategory === cat.slug
-                        ? "font-bold bg-[#5EAFAD] text-white"
-                        : ""
-                    }`}
-                  >
-                    {cat.title}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <ToggleGroup
-              type="single"
-              value={selectedCategory}
-              onValueChange={(value) => value && handleCategoryChange(value)}
-              className="w-fit mx-auto flex flex-wrap gap-1"
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        ) : (
+          <ToggleGroup
+            type="single"
+            value={selectedCategory}
+            onValueChange={(value) => value && handleCategoryChange(value)}
+            className="w-fit mx-auto flex flex-wrap gap-1"
+          >
+            <ToggleGroupItem
+              value="all"
+              className="data-[state=on]:bg-[#5EAFAD] data-[state=on]:text-white hover:bg-[var(--index-section-background)] hover:text-black px-4 py-2 cursor-pointer"
             >
+              All Courses
+            </ToggleGroupItem>
+
+            {categories.map((cat) => (
               <ToggleGroupItem
-                value="all"
+                key={cat.id}
+                value={cat.slug}
                 className="data-[state=on]:bg-[#5EAFAD] data-[state=on]:text-white hover:bg-[var(--index-section-background)] hover:text-black px-4 py-2 cursor-pointer"
               >
-                All Courses
+                {cat.title}
               </ToggleGroupItem>
-
-              {categories.map((cat) => (
-                <ToggleGroupItem
-                  key={cat.id}
-                  value={cat.slug}
-                  className="data-[state=on]:bg-[#5EAFAD] data-[state=on]:text-white hover:bg-[var(--index-section-background)] hover:text-black px-4 py-2 cursor-pointer"
-                >
-                  {cat.title}
-                </ToggleGroupItem>
-              ))}
-            </ToggleGroup>
-          )}
-        </div>
-
-        {/* Course grid */}
-        {loading ? (
-          <div className="container mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[...Array(8)].map((_, index) => (
-              <div key={index} className="flex flex-col space-y-3">
-                <Skeleton className="h-[125px] w-full rounded-xl" />
-                <div className="space-y-2">
-                  <Skeleton className="h-4 w-full" />
-                  <Skeleton className="h-4 w-4/5" />
-                </div>
-              </div>
             ))}
-          </div>
-        ) : (
-          <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {courseData.length > 0 ? (
-              courseData.map((course) => (
-                <CourseCard
-                  key={course.id}
-                  title={course.title}
-                  documentId={course.documentId}
-                  media={course.media}
-                />
-              ))
-            ) : (
-              <p className="col-span-full text-center py-8">
-                No courses found in this category.
-              </p>
-            )}
-          </section>
+          </ToggleGroup>
         )}
       </div>
+
+      {/* Course grid */}
+      {loading ? (
+        <div className="container mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[...Array(8)].map((_, index) => (
+            <div key={index} className="flex flex-col space-y-3">
+              <Skeleton className="h-[125px] w-full rounded-xl" />
+              <div className="space-y-2">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-4/5" />
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {courseData.length > 0 ? (
+            courseData.map((course) => (
+              <CourseCard
+                key={course.id}
+                title={course.title}
+                documentId={course.documentId}
+                media={course.media}
+              />
+            ))
+          ) : (
+            <p className="col-span-full text-center py-8">
+              No courses found in this category.
+            </p>
+          )}
+        </section>
+      )}
     </>
   );
 };
