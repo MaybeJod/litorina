@@ -2,7 +2,7 @@ import type { Course } from "@/interfaces/CourseInterface";
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardFooter, CardTitle } from "./CustomCourseCard";
 
-export default function CourseCard ({ title, media, documentId }: Course) {
+export function CourseCard ({ title, media, documentId }: Course) {
   const imageUrl = media?.formats?.thumbnail?.url
     ? `http://litorina.onrender.com${media?.formats?.thumbnail?.url}`
     : "https://placehold.co/0";
@@ -28,5 +28,4 @@ export default function CourseCard ({ title, media, documentId }: Course) {
       </Card>
     </Link>
   );
-};
-
+}
