@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardTitle } from "./CustomNavigationCard";
 import type { Nav } from "@/interfaces/NavInterface";
-export default function IndexNavigationCard({
+
+const IndexNavigationCard = ({
   title,
   url,
   media,
-}: Pick<Nav, "title" | "url" | "media">) {
+}: Pick<Nav, "title" | "url" | "media">) => {
   const imageUrl = media?.formats?.thumbnail?.url
     ? `http://litorina.onrender.com${media?.formats?.thumbnail?.url}`
-    : "https://placehold.co/400";
+    : "https://placehold.co/0";
+
   return (
     <Link to={url} className="block">
       <Card className="p-0 max-[640px]:aspect-[3/2] sm:aspect-[3/2] lg:aspect-square hover:shadow-lg transition-shadow duration-300 overflow-hidden">
@@ -28,4 +30,6 @@ export default function IndexNavigationCard({
       </Card>
     </Link>
   );
-}
+};
+
+export default IndexNavigationCard;
