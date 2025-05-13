@@ -11,7 +11,7 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { CourseCard } from "./CourseCard";
+import CourseCard from "./CourseCard";
 
 interface SectionProps {
   type: "nav" | "course" | "news";

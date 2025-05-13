@@ -1,23 +1,22 @@
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardFooter, CardTitle } from "./CustomCourseCard";
-import type { Course } from "@/interfaces/CourseInterface";
 
-interface CourseCardProps {
-  course: Course;
-}
-
-export const CourseCard = ({ course }: CourseCardProps) => {
-  if (!course) return null;
-
-  const { title, imageUrl, documentId } = course;
-
+export default function CourseCard({
+  title,
+  imageUrl,
+  documentId,
+}: {
+  title: string;
+  imageUrl: string;
+  documentId: string;
+}) {
   return (
     <Link to={`/courses/${documentId}`} className="block">
-      <Card className="w-full hover:shadow-lg transition-shadow duration-300 rounded-2xl">
+      <Card className="w-full hover:shadow-lg transition-shadow duration-300">
         {/* Image Section */}
         <CardHeader className="p-0">
           <img
-            src={imageUrl ?? "https://placehold.co/400"}
+            src={imageUrl || "https://placehold.co/400"} // Placeholder image
             alt={title}
             className="w-full h-48 object-cover rounded-t-lg"
           />
@@ -35,4 +34,4 @@ export const CourseCard = ({ course }: CourseCardProps) => {
       </Card>
     </Link>
   );
-};
+}

@@ -1,7 +1,7 @@
 import fetchCourses from "@/api/fetchCourses";
-import { CourseCard } from "@/components/custom/CourseCard";
+import CourseCard from "@/components/custom/CourseCard";
 import { useEffect, useState } from "react";
-import FilterCategory from "@/components/FilterCategory";
+import FilterCategory from "@/components/custom/FilterCategory";
 
 import type { Course } from "@/interfaces/CourseInterface";
 

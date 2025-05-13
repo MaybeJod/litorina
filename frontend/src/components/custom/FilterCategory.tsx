@@ -3,7 +3,7 @@ import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { fetchCategories, fetchCoursesByCategory } from "@/api/fetchCategories";
 import type { Category } from "@/interfaces/CategoryInterface";
 import type { Course } from "@/interfaces/CourseInterface";
-import { CourseCard } from "@/components/custom/CourseCard";
+import CourseCard from "@/components/custom/CourseCard";
 
 const FilterCategory: React.FC = () => {
   const [category, setCategory] = useState<string>();
@@ -55,7 +55,12 @@ const FilterCategory: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {courses.length > 0 ? (
             courses.map((course) => (
-              <CourseCard key={course.id} course={course} />
+              <CourseCard
+                key={course.id}
+                title={course.title}
+                imageUrl={course.media?.url || ""}
+                documentId={course.documentId}
+              />
             ))
           ) : (
             <p>No courses found in this category.</p>
