@@ -2,6 +2,7 @@ import { useEffect, useState, type JSX } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
 import { getNavigationItems } from "../api/fetchNavigationItems";
+import Course from "@/pages/Course";
 import MainLayout from "@/layout/MainLayout";
 import Courses from "../pages/Courses";
 import Index from "../pages/Index";
@@ -24,6 +25,11 @@ const DynamicRouter = () => {
         path: item.url,
         element: componentMap[item.url] || <div>{item.title}</div>,
       }));
+
+      dynamicRoutes.push({
+        path: "/courses/:documentId",
+        element: <Course />,
+      });
 
       setRoutes([
         {
