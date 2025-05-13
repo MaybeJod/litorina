@@ -70,7 +70,7 @@ const Courses = () => {
             type="single"
             value={selectedCategory}
             onValueChange={(value) => value && setSelectedCategory(value)}
-            className="w-fit mx-auto flex flex-wrap gap-1"
+            className="w-fit mx-auto flex flex-wrap gap-1 max-[1000px]:flex-col "
           >
             {/* All Courses button as the first item */}
             <ToggleGroupItem
@@ -94,7 +94,7 @@ const Courses = () => {
 
         {/* Course grid */}
         {loading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="container mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div className="flex flex-col space-y-3">
               <Skeleton className="h-[125px] w-[250px] rounded-xl" />
               <div className="space-y-2">
