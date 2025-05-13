@@ -17,10 +17,10 @@ export default function CourseCard({
           <img
             src={imageUrl || "https://placehold.co/400"}
             alt={title}
-            className="w-full h-48 object-cover rounded-lg"
+            className="w-full aspect-[4/3] object-cover rounded-xl"
           />
         </CardHeader>
-        <CardFooter className="p-4">
+        <CardFooter className="p-6">
           <CardTitle
             className="text-l text-center font-semibold overflow-x-clip text-ellipsis whitespace-nowrap"
             title={title}
