@@ -49,7 +49,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
                 title={item.title}
                 imageUrl={
                   item.media?.formats?.thumbnail?.url
-                    ? `http://litorina.onrender.com${item.media?.formats?.small?.url}`
+                    ? `http://litorina.onrender.com${item.media?.formats?.thumbnail?.url}`
                     : "https://placehold.co/400"
                 }
                 documentId={(item as Course).documentId}
