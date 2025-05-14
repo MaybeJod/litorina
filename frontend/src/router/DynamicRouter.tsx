@@ -6,6 +6,7 @@ import Course from "@/pages/Course";
 import MainLayout from "@/layout/MainLayout";
 import Courses from "../pages/Courses";
 import Events from "../pages/Events";
+import EventPage from "../pages/Event"; // ✅ Renamed to avoid conflict
 import Index from "../pages/Index";
 import NotFound from "@/pages/NotFound";
 
@@ -31,6 +32,11 @@ const DynamicRouter = () => {
       dynamicRoutes.push({
         path: "/courses/:documentId",
         element: <Course />,
+      });
+
+      dynamicRoutes.push({
+        path: "/events/:documentId",
+        element: <EventPage />, // ✅ Use the renamed component here
       });
 
       setRoutes([
