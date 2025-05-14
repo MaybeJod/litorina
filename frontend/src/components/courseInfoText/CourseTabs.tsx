@@ -34,22 +34,30 @@ const renderRichText = (node: RichText): React.ReactNode => {
   }
 
   switch (node.type) {
-    case "h1": return <h1>{node.children?.map(renderRichText)}</h1>;
-    case "h2": return <h2>{node.children?.map(renderRichText)}</h2>;
-    case "h3": return <h3>{node.children?.map(renderRichText)}</h3>;
-    case "paragraph": return <p>{node.children?.map(renderRichText)}</p>;
-    case "link": return (
-      <a href={node.url} target="_blank" rel="noopener noreferrer">
-        {node.children?.map(renderRichText)}
-      </a>
-    );
-    case "list": return <ul>{node.children?.map(renderRichText)}</ul>;
-    case "list-item": return <li>{node.children?.map(renderRichText)}</li>;
-    case "code": return (
-      <pre>
-        <code>{node.children?.map(renderRichText)}</code>
-      </pre>
-    );
+    case "h1":
+      return <h1>{node.children?.map(renderRichText)}</h1>;
+    case "h2":
+      return <h2>{node.children?.map(renderRichText)}</h2>;
+    case "h3":
+      return <h3>{node.children?.map(renderRichText)}</h3>;
+    case "paragraph":
+      return <p>{node.children?.map(renderRichText)}</p>;
+    case "link":
+      return (
+        <a href={node.url} target="_blank" rel="noopener noreferrer">
+          {node.children?.map(renderRichText)}
+        </a>
+      );
+    case "list":
+      return <ul>{node.children?.map(renderRichText)}</ul>;
+    case "list-item":
+      return <li>{node.children?.map(renderRichText)}</li>;
+    case "code":
+      return (
+        <pre>
+          <code>{node.children?.map(renderRichText)}</code>
+        </pre>
+      );
     default:
       return node.children?.map(renderRichText) || null;
   }
@@ -58,8 +66,12 @@ const renderRichText = (node: RichText): React.ReactNode => {
 const CourseTabs: React.FC<CourseTabsProps> = ({ course }) => {
   const [activeTab, setActiveTab] = useState("coursePeriod");
 
-    if (!course) {
-    return <p className="mt-4 text-center text-gray-500">No course details available.</p>;
+  if (!course) {
+    return (
+      <p className="mt-4 text-center text-gray-500">
+        No course details available.
+      </p>
+    );
   }
 
   const tabContent: Record<string, RichText[] | undefined> = {
@@ -70,9 +82,9 @@ const CourseTabs: React.FC<CourseTabsProps> = ({ course }) => {
     place: course.place,
   };
 
-  return (    
+  return (
     <div className="mt-8">
-      <div className="flex flex-wrap justify-center gap-2 border-2 border-dashed border-purple-300 p-4 rounded-md">
+      <div className="flex flex-wrap justify-center gap-2  p-4 rounded-md">
         {tabs.map((tab) => (
           <button
             key={tab.key}
@@ -89,9 +101,13 @@ const CourseTabs: React.FC<CourseTabsProps> = ({ course }) => {
       </div>
 
       <div className="mt-4 bg-white p-4 rounded-md shadow-sm space-y-2">
-        {Array.isArray(tabContent[activeTab])
-          ? tabContent[activeTab]!.map((node, i) => <div key={i}>{renderRichText(node)}</div>)
-          : <p>No content available.</p>}
+        {Array.isArray(tabContent[activeTab]) ? (
+          tabContent[activeTab]!.map((node, i) => (
+            <div key={i}>{renderRichText(node)}</div>
+          ))
+        ) : (
+          <p>No content available.</p>
+        )}
       </div>
     </div>
   );
