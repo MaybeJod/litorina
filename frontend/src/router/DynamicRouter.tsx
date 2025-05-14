@@ -6,6 +6,7 @@ import Course from "@/pages/Course";
 import MainLayout from "@/layout/MainLayout";
 import Courses from "../pages/Courses";
 import Index from "../pages/Index";
+import NotFound from "@/pages/NotFound";
 
 const DynamicRouter = () => {
   const [routes, setRoutes] = useState<RouteObject[]>([]);
@@ -37,7 +38,7 @@ const DynamicRouter = () => {
           element: <MainLayout />,
           children: [{ path: "/", element: <Index /> }, ...dynamicRoutes],
         },
-        { path: "*", element: <div>404 - Page Not Found</div> },
+        { path: "*", element: <NotFound /> },
       ]);
     };
 
