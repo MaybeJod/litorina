@@ -72,9 +72,11 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
               <NewsCard
                 title={(item as News).title}
                 description={(item as News).description
-                  .map((desc) => desc.children.map((child) => child.text).join(" "))
-                  .join(" ")}
-                publishedDate={(item as News).publishedDate || "Unknown Date"} 
+                  .map((desc) =>
+                    desc.children?.map((child) => child.text).join(" ") || ""
+                  )
+                  .join(" ")} // Safely handle undefined children
+                publishedDate={(item as News).publishedDate || "Unknown Date"}
                 documentId={(item as News).documentId}
               />
             )}
