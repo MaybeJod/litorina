@@ -62,7 +62,7 @@ const Index: React.FC = () => {
       {featuredNewsData && (
         <IndexSectionLayout
           type="news"
-          data={null}
+          data={featuredNewsData}
           title="Latest News"
           buttonText="News"
         />
