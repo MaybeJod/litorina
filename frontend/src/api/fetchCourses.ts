@@ -13,7 +13,7 @@ const fetchCourses = async (): Promise<Course[]> => {
     const jsonData = await response.json();
 
     const courses = jsonData.data.map((item: any) => ({
-      id: item.id,
+      documentId: item.documentId,
       title: item.title,
       media: item.media,
     }));
