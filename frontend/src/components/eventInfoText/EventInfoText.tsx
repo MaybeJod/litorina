@@ -1,4 +1,4 @@
-// src/components/eventInfoText/EventInfoText.tsx
+
 import { useEffect, useState } from "react";
 
 interface EventInfoProps {

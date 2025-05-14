@@ -1,4 +1,4 @@
-// src/pages/Event.tsx
+
 import { useParams } from "react-router-dom";
 import EventInfoText from "@/components/eventInfoText/EventInfoText";
 
