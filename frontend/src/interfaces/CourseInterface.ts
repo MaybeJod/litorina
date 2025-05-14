@@ -9,7 +9,13 @@ interface Course {
   summary: string | null;
   isFeatured: boolean | null;
   media: Media | null;
-  category: any;
+  category: { id: number; title: string; slug: string }; 
+
+  coursePeriod?: RichText[];
+  application?: RichText[];
+  costs?: RichText[];
+  moreInformation?: RichText[];
+  place?: RichText[];
 }
 
 export type { Course };
