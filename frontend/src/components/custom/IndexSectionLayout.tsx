@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import CardGridContainer from "./CardGridContainer";
 import CourseCard from "./CourseCard";
 import IndexNavigationCard from "./IndexNavigationCard";
-import type { RichText } from "@/interfaces/RichTextInterface";
 import NewsCard from "./NewsCard";
 
 interface SectionProps {
