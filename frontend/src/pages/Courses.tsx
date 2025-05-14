@@ -1,3 +1,5 @@
+import type { Course } from "@/interfaces/CourseInterface";
+import type { Category } from "@/interfaces/CategoryInterface";
 import { useEffect, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -9,11 +11,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import fetchCourses from "@/api/fetchCourses";
 import { fetchCategories, fetchCoursesByCategory } from "@/api/fetchCategories";
+import fetchCourses from "@/api/fetchCourses";
+import CardGridContainer from "@/components/custom/CardGridContainer";
 import CourseCard from "@/components/custom/CourseCard";
-import type { Course } from "@/interfaces/CourseInterface";
-import type { Category } from "@/interfaces/CategoryInterface";
 
 const Courses = () => {
   const [courseData, setCourseData] = useState<Course[]>([]);
@@ -159,7 +160,7 @@ const Courses = () => {
           ))}
         </div>
       ) : (
-        <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <CardGridContainer>
           {courseData.length > 0 ? (
             courseData.map((course) => (
               <CourseCard
@@ -174,7 +175,7 @@ const Courses = () => {
               No courses found in this category.
             </p>
           )}
-        </section>
+        </CardGridContainer>
       )}
     </>
   );
