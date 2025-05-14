@@ -8,14 +8,15 @@ interface CourseCardProps {
   media: Media | null;
 }
 
-const CourseCard = ({ title, media, documentId }: CourseCardProps) => {
+
+export default function CourseCard ({ title, media, documentId }: CourseCardProps ) {
   const imageUrl = media?.formats?.thumbnail?.url
     ? `http://litorina.onrender.com${media?.formats?.thumbnail?.url}`
     : "https://placehold.co/0";
 
   return (
     <Link to={`/courses/${documentId}`} className="block">
-      <Card className="w-full hover:shadow-lg transition-shadow duration-300">
+      <Card className="max-[400px]:mb-4 hover:shadow-lg transition-shadow duration-300">
         <CardHeader className="p-0">
           <img
             src={imageUrl}
@@ -36,4 +37,3 @@ const CourseCard = ({ title, media, documentId }: CourseCardProps) => {
   );
 };
 
-export default CourseCard;
