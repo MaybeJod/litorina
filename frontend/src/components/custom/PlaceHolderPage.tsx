@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 const PlaceHolderPage = () => {
   const navigate = useNavigate();
 
+  // Function to handle the "Go Back" button click
   const handleGoBack = () => {
     navigate(-1);
   };

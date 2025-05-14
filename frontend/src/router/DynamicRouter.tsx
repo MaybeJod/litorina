@@ -17,6 +17,7 @@ const DynamicRouter = () => {
     const fetchRoutes = async () => {
       const navigationItems = await fetchNavigationItems();
 
+      // Filter out the items that are not in the allowed list
       const componentMap: Record<string, JSX.Element> = {
         "/courses": <Courses />,
         "/events": <Events />,
