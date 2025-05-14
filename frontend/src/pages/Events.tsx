@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { EventCard } from "../components/custom/EventCard";
+import EventCard  from "../components/custom/EventCard";
 
 interface Event {
   id: number;
