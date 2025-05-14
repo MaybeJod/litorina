@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { getNavigationItems } from "@/api/fetchNavigationItems";
-import type { NavigationItem } from "@/interfaces/NavitemsInreface";
+import fetchNavigationItems from "@/api/fetchNavigationItems";
+import type { NavigationItem } from "@/interfaces/NavitemsInterface";
 import Logo from "@/components/custom/Logo";
 
 const Footer = () => {
@@ -9,7 +9,7 @@ const Footer = () => {
 
   useEffect(() => {
     const fetchNavItems = async () => {
-      const data = await getNavigationItems();
+      const data = await fetchNavigationItems();
       setNavItems(data);
     };
     fetchNavItems();
