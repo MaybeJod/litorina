@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import fetchCourseBySlug from "@/api/fetchCourse";
+import CourseTabs from "./CourseTabs";
+import type { Course } from "@/interfaces/CourseInterface";
 
 interface Node {
   type: string;
@@ -11,11 +13,6 @@ interface Node {
   url?: string;
   children?: Node[];
   id?: string;
-}
-
-interface Course {
-  title: string;
-  description: Node[];
 }
 
 interface CourseInfoTextProps {
@@ -43,6 +40,11 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ slug }) => {
       return <span key={uniqueKey}>{content}</span>;
     }
 
+    const renderChildren = () =>
+      node.children?.map((child, childIndex) =>
+        renderRichText(child, childIndex)
+      );
+
     switch (node.type) {
       case "heading":
         return (
@@ -50,9 +52,7 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ slug }) => {
             key={uniqueKey}
             className="text-[36px] font-bold my-4 sm:text-[28px]"
           >
-            {node.children?.map((child: Node, childIndex: number) =>
-              renderRichText(child, childIndex)
-            )}
+            {renderChildren()}
           </h1>
         );
       case "paragraph":
@@ -61,9 +61,7 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ slug }) => {
             key={uniqueKey}
             className="text-[24px] font-normal my-2 sm:text-[18px]"
           >
-            {node.children?.map((child: Node, childIndex: number) =>
-              renderRichText(child, childIndex)
-            )}
+            {renderChildren()}
           </p>
         );
       case "link":
@@ -75,9 +73,7 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ slug }) => {
             rel="noopener noreferrer"
             className="text-[24px] font-bold text-blue-600 underline hover:text-blue-800 sm:text-[18px]"
           >
-            {node.children?.map((child: Node, childIndex: number) =>
-              renderRichText(child, childIndex)
-            )}
+            {renderChildren()}
           </a>
         );
       case "list":
@@ -86,9 +82,7 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ slug }) => {
             key={uniqueKey}
             className="list-disc pl-6 my-2 text-[24px] font-bold sm:text-[18px]"
           >
-            {node.children?.map((child: Node, childIndex: number) =>
-              renderRichText(child, childIndex)
-            )}
+            {renderChildren()}
           </ul>
         );
       case "list-item":
@@ -97,9 +91,7 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ slug }) => {
             key={uniqueKey}
             className="mb-1 text-[24px] font-bold sm:text-[18px]"
           >
-            {node.children?.map((child: Node, childIndex: number) =>
-              renderRichText(child, childIndex)
-            )}
+            {renderChildren()}
           </li>
         );
       case "code":
@@ -108,19 +100,11 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ slug }) => {
             key={uniqueKey}
             className="bg-gray-100 p-4 rounded text-[20px] font-mono overflow-x-auto"
           >
-            <code>
-              {node.children?.map((child: Node, childIndex: number) =>
-                renderRichText(child, childIndex)
-              )}
-            </code>
+            <code>{renderChildren()}</code>
           </pre>
         );
       default:
-        return (
-          node.children?.map((child: Node, childIndex: number) =>
-            renderRichText(child, childIndex)
-          ) || null
-        );
+        return renderChildren() || null;
     }
   };
 
@@ -153,14 +137,23 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ slug }) => {
       <h1 className="text-[36px] font-bold mb-6 sm:text-[28px]">
         {course.title}
       </h1>
+
       {Array.isArray(course.description) &&
-        course.description.map((node, index) => {
-          return (
-            <div key={`${node.type}-${index}`}>
-              {renderRichText(node, index)}
-            </div>
-          );
-        })}
+        course.description.map((node, index) => (
+          <div key={`${node.type}-${index}`}>{renderRichText(node, index)}</div>
+        ))}
+
+      {course && (
+        <CourseTabs
+          course={{
+            coursePeriod: course.coursePeriod,
+            application: course.application,
+            costs: course.costs,
+            moreInformation: course.moreInformation,
+            place: course.place,
+          }}
+        />
+      )}
     </div>
   );
 };

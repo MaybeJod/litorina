@@ -24,6 +24,12 @@ const fetchCourseBySlug = async (slug: string): Promise<Course | null> => {
         isFeatured: course.isFeatured,
         category: course.category,
         media: course.media,
+        coursePeriod: course.coursePeriod,          
+        application: course.application,
+        costs: course.costs,
+        moreInformation: course.moreInformation,
+        place: course.place,
+
       };
 
       return courseDetails;
