@@ -5,7 +5,6 @@ import { defineConfig } from "vite";
 import { configDefaults } from 'vitest/config';
 
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
@@ -16,7 +15,7 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-    setupFiles: "./src/setupTests.ts", // Create this file if it doesn't exist
+    setupFiles: "./src/setupTests.ts", 
     exclude: [...configDefaults.exclude, "e2e/**"],
   },
 });

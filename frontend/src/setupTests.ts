@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { vi } from "vitest"; // Import `vi` from Vitest
+import { vi } from "vitest"; 
 
 global.matchMedia =
   global.matchMedia ||
@@ -7,7 +7,7 @@ global.matchMedia =
     return {
       matches: false,
       media: query,
-      addEventListener: vi.fn(),  // Add the mock for `addEventListener`
+      addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
       dispatchEvent: vi.fn(),
     };

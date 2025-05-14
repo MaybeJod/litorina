@@ -2,10 +2,9 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 import type { Mock } from "vitest";
 import '@testing-library/jest-dom';
-import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
+import { BrowserRouter } from 'react-router-dom'; 
 import Courses from "../Courses";
 
-// Mock API
 vi.mock("../../api/fetchCategories", () => ({
   fetchCategories: vi.fn(),
   fetchCoursesByCategory: vi.fn(),
@@ -40,26 +39,22 @@ describe("Courses Page", () => {
     (fetchCoursesByCategory as Mock).mockResolvedValue(mockFrontendCourses);
 
     render(
-      <BrowserRouter> {/* Wrap Courses with BrowserRouter */}
+      <BrowserRouter> 
         <Courses />
       </BrowserRouter>
     );
 
-    // Wait for all courses to appear
     await waitFor(() => {
       expect(screen.getByText("Intro to Web")).toBeInTheDocument();
       expect(screen.getByText("React Basics")).toBeInTheDocument();
     });
 
-    // Click on the "Frontend" category
     fireEvent.click(screen.getByText("Frontend"));
 
-    // Wait for filtered courses to load
     await waitFor(() => {
       expect(screen.getByText("Advanced React")).toBeInTheDocument();
     });
 
-    // Ensure old courses are no longer visible
     expect(screen.queryByText("Intro to Web")).not.toBeInTheDocument();
     expect(screen.queryByText("React Basics")).not.toBeInTheDocument();
   });
