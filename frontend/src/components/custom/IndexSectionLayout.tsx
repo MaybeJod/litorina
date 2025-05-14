@@ -14,10 +14,8 @@ import { Button } from "@/components/ui/button";
 import CardGridContainer from "./CardGridContainer";
 import CourseCard from "./CourseCard";
 import IndexNavigationCard from "./IndexNavigationCard";
+import type { RichText } from "@/interfaces/RichTextInterface";
 
-interface RichText {
-  text?: string;
-}
 interface SectionProps {
   type: "nav" | "course" | "news";
   data: Nav[] | Course[] | News[] | null;
