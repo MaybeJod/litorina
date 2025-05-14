@@ -9,7 +9,7 @@ interface EventCardProps {
   documentId: string;
 }
 
-export const EventCard = ({ title, description, eventDateTime, documentId }: EventCardProps) => {
+const EventCard = ({ title, description, eventDateTime, documentId }: EventCardProps) => {
   const placeholderImage = "https://placehold.co/400x200";
 
   const formattedDate = new Date(eventDateTime).toLocaleString("en-US", {
@@ -44,3 +44,4 @@ export const EventCard = ({ title, description, eventDateTime, documentId }: Eve
     </Card>
   );
 };
+export default EventCard;
