@@ -15,6 +15,9 @@ import CardGridContainer from "./CardGridContainer";
 import CourseCard from "./CourseCard";
 import IndexNavigationCard from "./IndexNavigationCard";
 
+interface RichText {
+  text?: string;
+}
 interface SectionProps {
   type: "nav" | "course" | "news";
   data: Nav[] | Course[] | News[] | null;
@@ -44,7 +47,9 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
         } py-8`}
       >
         <h2 className="text-center text-3xl font-bold mb-8">{sectionTitle}</h2>
-        <p className="max-[1050px]:px-4 container mx-auto">No {type} items available.</p>
+        <p className="max-[1050px]:px-4 container mx-auto">
+          No {type} items available.
+        </p>
       </section>
     );
   }
@@ -81,9 +86,9 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
                 <CardContent>
                   <CardDescription>
                     {(item as News).description[0]?.children
-                      .map((child) => child.text)
+                      ?.map((child: RichText) => child.text || "")
                       .join("")
-                      .substring(0, 100)}
+                      .substring(0, 100) || ""}
                     ...
                     {(item as News).publishedDate && (
                       <p className="text-muted-foreground text-xs mt-2">
@@ -99,7 +104,10 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
       </CardGridContainer>
       {buttonText && data && (
         <div className="mt-6 text-center">
-          <Button className="rounded-full bg-[var(--button-primary)] px-8 py-5" asChild>
+          <Button
+            className="rounded-full bg-[var(--button-primary)] px-8 py-5"
+            asChild
+          >
             <Link to={sectionLink}>See All {buttonText || sectionTitle}</Link>
           </Button>
         </div>
