@@ -11,6 +11,7 @@ import {
   CardContent,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import CardGridContainer from "./CardGridContainer";
 import CourseCard from "./CourseCard";
 import IndexNavigationCard from "./IndexNavigationCard";
 
@@ -55,7 +56,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
       } py-8`}
     >
       <h2 className="text-center text-2xl font-bold mb-8">{sectionTitle}</h2>
-      <div className="container mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <CardGridContainer>
         {data.map((item) => (
           <React.Fragment key={item.id}>
             {type === "nav" && (
@@ -95,7 +96,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
             )}
           </React.Fragment>
         ))}
-      </div>
+      </CardGridContainer>
       {buttonText && data && (
         <div className="mt-6 text-center">
           <Button className="rounded-full bg-[var(--button-primary)]" asChild>
