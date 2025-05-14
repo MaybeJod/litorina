@@ -147,36 +147,38 @@ const Courses = () => {
       </div>
 
       {/* Course grid */}
-      {loading ? (
-        <CardGridContainer>
-          {[...Array(8)].map((_, index) => (
-            <div key={index} className="flex flex-col space-y-3">
-              <Skeleton className="h-[125px] w-full rounded-xl" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-4/5" />
+      <section className="mb-8">
+        {loading ? (
+          <CardGridContainer>
+            {[...Array(8)].map((_, index) => (
+              <div key={index} className="flex flex-col space-y-3">
+                <Skeleton className="h-[125px] w-full rounded-xl" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-4/5" />
+                </div>
               </div>
-            </div>
-          ))}
-        </CardGridContainer>
-      ) : (
-        <CardGridContainer>
-          {courseData.length > 0 ? (
-            courseData.map((course) => (
-              <CourseCard
-                key={course.id}
-                title={course.title}
-                documentId={course.documentId}
-                media={course.media}
-              />
-            ))
-          ) : (
-            <p className="col-span-full text-center py-8">
-              No courses found in this category.
-            </p>
-          )}
-        </CardGridContainer>
-      )}
+            ))}
+          </CardGridContainer>
+        ) : (
+          <CardGridContainer>
+            {courseData.length > 0 ? (
+              courseData.map((course) => (
+                <CourseCard
+                  key={course.id}
+                  title={course.title}
+                  documentId={course.documentId}
+                  media={course.media}
+                />
+              ))
+            ) : (
+              <p className="col-span-full text-center py-8">
+                No courses found in this category.
+              </p>
+            )}
+          </CardGridContainer>
+        )}
+      </section>
     </>
   );
 };
