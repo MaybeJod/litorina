@@ -15,7 +15,7 @@ const CourseCard = ({ title, media, documentId }: CourseCardProps) => {
 
   return (
     <Link to={`/courses/${documentId}`} className="block">
-      <Card className="w-full hover:shadow-lg transition-shadow duration-300">
+      <Card className="max-[400px]:mb-4 hover:shadow-lg transition-shadow duration-300">
         <CardHeader className="p-0">
           <img
             src={imageUrl}
