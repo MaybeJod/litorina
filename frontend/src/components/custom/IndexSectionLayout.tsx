@@ -43,7 +43,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
           backgroundColor ? "bg-[var(--index-section-background)]" : ""
         } py-8`}
       >
-        <h2 className="text-center text-2xl font-bold mb-8">{sectionTitle}</h2>
+        <h2 className="text-center text-3xl font-bold mb-8">{sectionTitle}</h2>
         <p className="max-[1050px]:px-4 container mx-auto">No {type} items available.</p>
       </section>
     );
@@ -55,7 +55,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
         backgroundColor ? "bg-[var(--index-section-background)]" : ""
       } py-8`}
     >
-      <h2 className="text-center text-2xl font-bold mb-8">{sectionTitle}</h2>
+      <h2 className="text-center text-3xl font-bold mb-8">{sectionTitle}</h2>
       <CardGridContainer>
         {data.map((item) => (
           <React.Fragment key={item.id}>
@@ -99,7 +99,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
       </CardGridContainer>
       {buttonText && data && (
         <div className="mt-6 text-center">
-          <Button className="rounded-full bg-[var(--button-primary)]" asChild>
+          <Button className="rounded-full bg-[var(--button-primary)] px-8 py-5" asChild>
             <Link to={sectionLink}>See All {buttonText || sectionTitle}</Link>
           </Button>
         </div>
