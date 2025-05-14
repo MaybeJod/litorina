@@ -1,13 +1,7 @@
-//import Header from "@/components/custom/Header";
-//import Index from "./pages/Index";
+import DynamicRouter from "./router/DynamicRouter";
 
 function App() {
-  return (
-    <>
-      {/* <Header />
-      <Index /> */}
-    </>
-  );
+  return <DynamicRouter />;
 }
 
 export default App;

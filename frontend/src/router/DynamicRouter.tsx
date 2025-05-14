@@ -5,8 +5,11 @@ import fetchNavigationItems from "@/api/fetchNavigationItems";
 import Course from "@/pages/Course";
 import MainLayout from "@/layout/MainLayout";
 import Courses from "../pages/Courses";
+import Events from "../pages/Events";
 import Index from "../pages/Index";
 import PlaceHolderPage from "@/components/custom/PlaceHolderPage";
+import NotFound from "@/pages/NotFound";
+
 
 const DynamicRouter = () => {
   const [routes, setRoutes] = useState<RouteObject[]>([]);
@@ -20,6 +23,9 @@ const DynamicRouter = () => {
         "/events": <div>Events</div>,
         "/rent": <PlaceHolderPage />,
         "/contact": <PlaceHolderPage />,
+        "/events": <Events />,
+        "/rent": <div>Rent our space</div>,
+        "/contact": <div>Contact</div>,
       };
 
       const dynamicRoutes = navigationItems.map((item) => ({
@@ -38,7 +44,7 @@ const DynamicRouter = () => {
           element: <MainLayout />,
           children: [{ path: "/", element: <Index /> }, ...dynamicRoutes],
         },
-        { path: "*", element: <div>404 - Page Not Found</div> },
+        { path: "*", element: <NotFound /> },
       ]);
     };
 
