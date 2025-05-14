@@ -17,6 +17,7 @@ const fetchCourses = async (): Promise<Course[]> => {
       documentId: item.documentId,
       title: item.title,
       media: item.media,
+      slug: item.slug,
     }));
 
     return courses;
