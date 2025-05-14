@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Logo from "@/components/custom/Logo";
-import { getNavigationItems } from "@/api/fetchNavigationItems";
-import type { NavigationItem } from "@/interfaces/NavitemsInreface";
+import fetchNavigationItems from "@/api/fetchNavigationItems";
+import type { NavigationItem } from "@/interfaces/NavitemsInterface";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -28,7 +28,7 @@ const Header = () => {
 
   useEffect(() => {
     const getNavItems = async () => {
-      const navData = await getNavigationItems();
+      const navData = await fetchNavigationItems();
       setNavItems(navData);
     };
     getNavItems();
