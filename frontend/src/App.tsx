@@ -1,13 +1,11 @@
-import Header from "@/components/custom/Header";
-import Index from "./pages/Index";
-import { HeroSectionLayout } from "./components/custom/HeroSection";
+//import Header from "@/components/custom/Header";
+//import Index from "./pages/Index";
 
 function App() {
   return (
     <>
-      <Header />
-      <HeroSectionLayout />
-      <Index />
+      {/* <Header />
+      <Index /> */}
     </>
   );
 }

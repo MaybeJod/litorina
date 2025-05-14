@@ -1,31 +1,31 @@
+import type { Media } from "@/interfaces/MediaInterface";
 import { Link } from "react-router-dom";
 import { Card, CardHeader, CardFooter, CardTitle } from "./CustomCourseCard";
 
-export default function CourseCard({
-  title,
-  imageUrl,
-  documentId,
-}: {
-  title: string;
-  imageUrl: string;
+interface CourseCardProps {
   documentId: string;
-}) {
+  title: string;
+  media: Media | null;
+}
+
+const CourseCard = ({ title, media, documentId }: CourseCardProps) => {
+  const imageUrl = media?.formats?.thumbnail?.url
+    ? `http://litorina.onrender.com${media?.formats?.thumbnail?.url}`
+    : "https://placehold.co/0";
+
   return (
     <Link to={`/courses/${documentId}`} className="block">
       <Card className="w-full hover:shadow-lg transition-shadow duration-300">
-        {/* Image Section */}
         <CardHeader className="p-0">
           <img
-            src={imageUrl || "https://placehold.co/400"} // Placeholder image
+            src={imageUrl}
             alt={title}
-            className="w-full h-48 object-cover rounded-t-lg"
+            className="w-full aspect-[4/3] object-cover rounded-xl"
           />
         </CardHeader>
-
-        {/* Title Section */}
-        <CardFooter className="p-4">
+        <CardFooter className="p-6">
           <CardTitle
-            className="text-l text-center font-semibold truncate"
+            className="text-l text-center font-semibold overflow-x-clip text-ellipsis whitespace-nowrap"
             title={title}
           >
             {title}
@@ -34,4 +34,6 @@ export default function CourseCard({
       </Card>
     </Link>
   );
-}
+};
+
+export default CourseCard;
