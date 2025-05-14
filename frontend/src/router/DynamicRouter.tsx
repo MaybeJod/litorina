@@ -36,7 +36,7 @@ const DynamicRouter = () => {
 
       dynamicRoutes.push({
         path: "/events/:documentId",
-        element: <EventPage />, // ✅ Use the renamed component here
+        element: <EventPage />,
       });
 
       setRoutes([
@@ -45,7 +45,11 @@ const DynamicRouter = () => {
           element: <MainLayout />,
           children: [{ path: "/", element: <Index /> }, ...dynamicRoutes],
         },
-        { path: "*", element: <NotFound /> },
+        {
+          path: "*",
+          element: <MainLayout />,
+          children: [{ path: "*", element: <NotFound /> }],
+        },
       ]);
     };
 
