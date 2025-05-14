@@ -5,7 +5,9 @@ import fetchNavigationItems from "@/api/fetchNavigationItems";
 import Course from "@/pages/Course";
 import MainLayout from "@/layout/MainLayout";
 import Courses from "../pages/Courses";
+import Events from "../pages/Events";
 import Index from "../pages/Index";
+import NotFound from "@/pages/NotFound";
 import PlaceHolderPage from "@/components/custom/PlaceHolderPage";
 
 const DynamicRouter = () => {
@@ -17,7 +19,7 @@ const DynamicRouter = () => {
 
       const componentMap: Record<string, JSX.Element> = {
         "/courses": <Courses />,
-        "/events": <div>Events</div>,
+        "/events": <Events />,
         "/rent": <PlaceHolderPage />,
         "/contact": <PlaceHolderPage />,
       };
@@ -38,7 +40,7 @@ const DynamicRouter = () => {
           element: <MainLayout />,
           children: [{ path: "/", element: <Index /> }, ...dynamicRoutes],
         },
-        { path: "*", element: <div>404 - Page Not Found</div> },
+        { path: "*", element: <NotFound /> },
       ]);
     };
 
