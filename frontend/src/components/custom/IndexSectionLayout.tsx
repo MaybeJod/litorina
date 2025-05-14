@@ -44,7 +44,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
         } py-8`}
       >
         <h2 className="text-center text-2xl font-bold mb-8">{sectionTitle}</h2>
-        <p className="container mx-auto">No {type} items available.</p>
+        <p className="max-[1050px]:px-4 container mx-auto">No {type} items available.</p>
       </section>
     );
   }
