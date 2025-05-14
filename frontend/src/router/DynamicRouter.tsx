@@ -1,7 +1,7 @@
 import { useEffect, useState, type JSX } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
-import { getNavigationItems } from "../api/fetchNavigationItems";
+import fetchNavigationItems from "@/api/fetchNavigationItems";
 import Course from "@/pages/Course";
 import MainLayout from "@/layout/MainLayout";
 import Courses from "../pages/Courses";
@@ -12,7 +12,7 @@ const DynamicRouter = () => {
 
   useEffect(() => {
     const fetchRoutes = async () => {
-      const navigationItems = await getNavigationItems();
+      const navigationItems = await fetchNavigationItems();
 
       const componentMap: Record<string, JSX.Element> = {
         "/courses": <Courses />,

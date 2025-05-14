@@ -1,6 +1,6 @@
 import type { NavigationItem } from "../interfaces/NavitemsInterface";
 
-const getNavigationItems = async (): Promise<NavigationItem[]> =>{
+const fetchNavigationItems = async (): Promise<NavigationItem[]> =>{
   try {
     const response = await fetch(
       "https://litorina.onrender.com/api/navigation-items"
@@ -18,4 +18,4 @@ const getNavigationItems = async (): Promise<NavigationItem[]> =>{
   }
 }
 
-export default getNavigationItems;
+export default fetchNavigationItems;
