@@ -1,4 +1,4 @@
-import  fetchHeroSection  from "@/api/fetchHeroSection";
+import fetchHeroSection from "@/api/fetchHeroSection";
 import type { HeroSection } from "@/interfaces/HerosectionInterface";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
@@ -11,12 +11,7 @@ const HeroSectionLayout = () => {
     fetchHeroSection().then(setHero);
   }, []);
 
-  console.log("Hero section data:", hero?.backgroundImageUrl);
-
   if (!hero) return null;
-
-  // const fallbackImageUrl =
-  //   "frontend/src/assets/heroImage.png";
 
   return (
     <section
@@ -32,7 +27,7 @@ const HeroSectionLayout = () => {
         Join our community by the Baltic Sea where <br />
         learning meets inspiration
       </p>
-     
+
       <Button className="text-xl font-medium px-10 py-6 mb-8 rounded-full shadow-lg border-2 border-white">
         {hero.buttonText}
       </Button>

@@ -21,3 +21,5 @@ const fetchHeroSection = async (): Promise<HeroSection | null> => {
     return null;
   }
 };
+
+export default fetchHeroSection;
