@@ -9,6 +9,7 @@ import Events from "../pages/Events";
 import EventPage from "../pages/Event"; // ✅ Renamed to avoid conflict
 import Index from "../pages/Index";
 import NotFound from "@/pages/NotFound";
+import PlaceHolderPage from "@/components/custom/PlaceHolderPage";
 
 const DynamicRouter = () => {
   const [routes, setRoutes] = useState<RouteObject[]>([]);
@@ -17,11 +18,12 @@ const DynamicRouter = () => {
     const fetchRoutes = async () => {
       const navigationItems = await fetchNavigationItems();
 
+      // Filter out the items that are not in the allowed list
       const componentMap: Record<string, JSX.Element> = {
         "/courses": <Courses />,
         "/events": <Events />,
-        "/rent": <div>Rent our space</div>,
-        "/contact": <div>Contact</div>,
+        "/rent": <PlaceHolderPage />,
+        "/contact": <PlaceHolderPage />,
       };
 
       const dynamicRoutes = navigationItems.map((item) => ({
