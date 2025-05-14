@@ -16,6 +16,7 @@ import { fetchCategories, fetchCoursesByCategory } from "@/api/fetchCategories";
 import fetchCourses from "@/api/fetchCourses";
 import CardGridContainer from "@/components/custom/CardGridContainer";
 import CourseCard from "@/components/custom/CourseCard";
+import CourseBanner from "@/assets/coursesBanner.png";
 
 const Courses = () => {
   const [courseData, setCourseData] = useState<Course[]>([]);
@@ -78,7 +79,7 @@ const Courses = () => {
       {/* banner section */}
       <section className="w-full">
         <img
-          src="https://images.unsplash.com/photo-1543875222-8a50d1903ffc?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          src={CourseBanner}
           alt="Courses banner"
           className="object-cover w-full aspect-4/1"
         />

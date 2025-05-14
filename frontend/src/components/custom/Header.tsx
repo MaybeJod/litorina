@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Logo from "@/components/custom/Logo";
-import { getNavigationItems } from "@/api/fetchNavigationItems";
-import type { NavigationItem } from "@/interfaces/NavitemsInreface";
+import fetchNavigationItems from "@/api/fetchNavigationItems";
+import type { NavigationItem } from "@/interfaces/NavitemsInterface";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -28,7 +28,7 @@ const Header = () => {
 
   useEffect(() => {
     const getNavItems = async () => {
-      const navData = await getNavigationItems();
+      const navData = await fetchNavigationItems();
       setNavItems(navData);
     };
     getNavItems();
@@ -40,7 +40,9 @@ const Header = () => {
 
   return (
     <header className="container mx-auto py-8 flex justify-between items-center text-base">
-      <Logo />
+      <Link to={"/"}>
+        <Logo />
+      </Link>
 
       {/* Desktop Navigation */}
       <div className="hidden lg:block">
@@ -66,7 +68,6 @@ const Header = () => {
               );
             })}
             <NavigationMenuItem className="flex">
-             
               <Button
                 onClick={toggleLanguage}
                 className="text-[var(--text-color-primary)] 
@@ -74,7 +75,7 @@ const Header = () => {
                 hover:bg-[var(--index-section-background)]
                 hover:text-[var(--accent-foreground)] "
               >
-                 <Globe className="w-4 h-auto text-[var(--text-color-nav-icon)]" />
+                <Globe className="w-4 h-auto text-[var(--text-color-nav-icon)]" />
                 {lang === "English" ? "Svenska" : "English"}
               </Button>
             </NavigationMenuItem>
