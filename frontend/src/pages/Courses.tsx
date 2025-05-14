@@ -148,7 +148,7 @@ const Courses = () => {
 
       {/* Course grid */}
       {loading ? (
-        <div className="container mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <CardGridContainer>
           {[...Array(8)].map((_, index) => (
             <div key={index} className="flex flex-col space-y-3">
               <Skeleton className="h-[125px] w-full rounded-xl" />
@@ -158,7 +158,7 @@ const Courses = () => {
               </div>
             </div>
           ))}
-        </div>
+        </CardGridContainer>
       ) : (
         <CardGridContainer>
           {courseData.length > 0 ? (
