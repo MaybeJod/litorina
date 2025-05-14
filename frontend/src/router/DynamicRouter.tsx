@@ -6,6 +6,7 @@ import Course from "@/pages/Course";
 import MainLayout from "@/layout/MainLayout";
 import Courses from "../pages/Courses";
 import Index from "../pages/Index";
+import PlaceHolderPage from "@/components/custom/PlaceHolderPage";
 
 const DynamicRouter = () => {
   const [routes, setRoutes] = useState<RouteObject[]>([]);
@@ -17,8 +18,8 @@ const DynamicRouter = () => {
       const componentMap: Record<string, JSX.Element> = {
         "/courses": <Courses />,
         "/events": <div>Events</div>,
-        "/rent": <div>Rent our space</div>,
-        "/contact": <div>Contact</div>,
+        "/rent": <PlaceHolderPage />,
+        "/contact": <PlaceHolderPage />,
       };
 
       const dynamicRoutes = navigationItems.map((item) => ({
