@@ -8,7 +8,8 @@ interface CourseCardProps {
   media: Media | null;
 }
 
-const CourseCard = ({ title, media, documentId }: CourseCardProps) => {
+
+export default function CourseCard ({ title, media, documentId }: CourseCardProps ) {
   const imageUrl = media?.formats?.thumbnail?.url
     ? `http://litorina.onrender.com${media?.formats?.thumbnail?.url}`
     : "https://placehold.co/0";
@@ -36,4 +37,3 @@ const CourseCard = ({ title, media, documentId }: CourseCardProps) => {
   );
 };
 
-export default CourseCard;
