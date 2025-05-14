@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import CardGridContainer from "./CardGridContainer";
 import CourseCard from "./CourseCard";
 import IndexNavigationCard from "./IndexNavigationCard";
+import type { RichText } from "@/interfaces/RichTextInterface";
 import NewsCard from "./NewsCard";
 
 interface SectionProps {
@@ -37,7 +38,9 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
           } py-8`}
       >
         <h2 className="text-center text-3xl font-bold mb-8">{sectionTitle}</h2>
-        <p className="max-[1050px]:px-4 container mx-auto">No {type} items available.</p>
+        <p className="max-[1050px]:px-4 container mx-auto">
+          No {type} items available.
+        </p>
       </section>
     );
   }
@@ -80,7 +83,10 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
       </CardGridContainer>
       {buttonText && data && (
         <div className="mt-6 text-center">
-          <Button className="rounded-full bg-[var(--button-primary)] px-8 py-5" asChild>
+          <Button
+            className="rounded-full bg-[var(--button-primary)] px-8 py-5"
+            asChild
+          >
             <Link to={sectionLink}>See All {buttonText || sectionTitle}</Link>
           </Button>
         </div>
