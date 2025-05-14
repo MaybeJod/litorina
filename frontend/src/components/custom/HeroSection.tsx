@@ -1,10 +1,10 @@
-import { fetchHeroSection } from "@/api/fetchHeroSection";
+import  fetchHeroSection  from "@/api/fetchHeroSection";
 import type { HeroSection } from "@/interfaces/HerosectionInterface";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import fallbackImage from "@/assets/heroImage.png";
 
-export const HeroSectionLayout = () => {
+const HeroSectionLayout = () => {
   const [hero, setHero] = useState<HeroSection | null>(null);
 
   useEffect(() => {
@@ -39,3 +39,5 @@ export const HeroSectionLayout = () => {
     </section>
   );
 };
+
+export default HeroSectionLayout;

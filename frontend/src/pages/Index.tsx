@@ -6,7 +6,7 @@ import fetchFeaturedNavigation from "@/api/fetchFeaturedNavigation";
 import fetchFeaturedCourses from "@/api/fetchFeaturedCourses";
 import fetchFeaturedNews from "@/api/fetchFeaturedNews";
 import IndexSectionLayout from "@/components/custom/IndexSectionLayout";
-import { HeroSectionLayout } from "@/components/custom/HeroSection";
+import HeroSectionLayout  from "@/components/custom/HeroSection";
 
 const Index: React.FC = () => {
   const [featuredNavData, setFeaturedNavData] = useState<Nav[] | null>(null);

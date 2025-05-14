@@ -1,6 +1,6 @@
 import type { HeroSection } from "@/interfaces/HerosectionInterface";
 
-export const fetchHeroSection = async (): Promise<HeroSection | null> => {
+const fetchHeroSection = async (): Promise<HeroSection | null> => {
   try {
     const response = await fetch(
       "https://litorina.onrender.com/api/hero-section?populate=*"
