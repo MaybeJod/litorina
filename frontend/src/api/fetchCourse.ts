@@ -24,9 +24,15 @@ const fetchCourseById = async (documentId: string): Promise<Course | null> => {
         isFeatured: course.isFeatured,
         category: course.category,
         media: course.media,
+        coursePeriod: course.coursePeriod,          
+        application: course.application,
+        costs: course.costs,
+        moreInformation: course.moreInformation,
+        place: course.place,
       };
 
       return courseDetails;
+      console.log("Fetched course data:", course);
     }
 
     return null;

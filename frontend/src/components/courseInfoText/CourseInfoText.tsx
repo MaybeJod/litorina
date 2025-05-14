@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import fetchCourseById from "@/api/fetchCourse";
+import CourseTabs from "./CourseTabs";
+import type { Course } from "@/interfaces/CourseInterface";
 
-interface Course {
-  title: string;
-  description: any[]; 
-}
 
 interface CourseInfoTextProps {
   documentId: string;
@@ -90,6 +88,18 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ documentId }) => {
         course.description.map((node, index) => (
           <div key={index}>{renderRichText(node)}</div>
         ))}
+
+      {course && (
+        <CourseTabs
+          course={{
+            coursePeriod: course.coursePeriod,
+            application: course.application,
+            costs: course.costs,
+            moreInformation: course.moreInformation,
+            place: course.place,
+          }}
+        />
+      )}
     </div>
   );
 };

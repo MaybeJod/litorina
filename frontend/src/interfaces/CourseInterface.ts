@@ -10,6 +10,12 @@ interface Course {
   isFeatured: boolean | null;
   media: Media | null;
   category: any;
+  
+  coursePeriod?: RichText[];
+  application?: RichText[];
+  costs?: RichText[];
+  moreInformation?: RichText[];
+  place?: RichText[];
 }
 
 export type { Course };
