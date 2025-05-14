@@ -6,6 +6,7 @@ interface Event {
   title: string;
   description: { type: string; children: { text: string }[] }[];
   eventDateTime: string;
+  documentId: string;
 }
 export default function EventsPage() {
     const [events, setEvents] = useState<Event[]>([]);
@@ -20,6 +21,7 @@ export default function EventsPage() {
               title: item.title,
               description: item.description,
               eventDateTime: item.eventDateTime,
+              documentId: item.documentId || item.id.toString(),
             }));
             setEvents(formatted);
           })
@@ -49,6 +51,7 @@ export default function EventsPage() {
               title={event.title}
               description={event.description}
               eventDateTime={event.eventDateTime}
+              documentId={event.documentId} // Pass documentId here
             />
           ))}
         </div>
