@@ -1,4 +1,3 @@
-//import type { Media } from "./MediaInterface";
 
 interface HeroSection {
   buttonText: string;
