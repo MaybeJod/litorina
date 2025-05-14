@@ -11,6 +11,7 @@ interface News {
   updatedAt: string;
   publishedAt: string;
   media: Media | null;
+  slug: string;
 }
 
 export type { News };

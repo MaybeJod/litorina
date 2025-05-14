@@ -3,6 +3,7 @@ import type { Category } from "@/interfaces/CategoryInterface";
 import { useEffect, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Skeleton } from "@/components/ui/skeleton";
+import Breadcrumbs from "@/components/custom/Breadcrumbs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -84,6 +85,10 @@ const Courses = () => {
         />
       </section>
 
+      <section>
+        <Breadcrumbs />
+      </section>
+
       {/* title */}
       <h1 className="text-6xl text-center m-6 font-bold">COURSES</h1>
 
@@ -124,7 +129,9 @@ const Courses = () => {
           <ToggleGroup
             type="single"
             value={selectedCategory}
-            onValueChange={(value) => value && handleCategoryChange(value)}
+            onValueChange={(value: string | undefined) => {
+              if (value) handleCategoryChange(value);
+            }}
             className="w-fit mx-auto flex flex-wrap gap-1"
           >
             <ToggleGroupItem
@@ -168,7 +175,7 @@ const Courses = () => {
                 <CourseCard
                   key={course.id}
                   title={course.title}
-                  documentId={course.documentId}
+                  slug={course.slug}
                   media={course.media}
                 />
               ))

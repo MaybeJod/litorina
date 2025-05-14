@@ -6,6 +6,7 @@ interface Nav {
   url: string;
   order: number;
   media: Media | null;
+  slug: string;
 }
 
 export type { Nav };
