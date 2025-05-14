@@ -5,6 +5,7 @@ import fetchNavigationItems from "@/api/fetchNavigationItems";
 import Course from "@/pages/Course";
 import MainLayout from "@/layout/MainLayout";
 import Courses from "../pages/Courses";
+import Events from "../pages/Events";
 import Index from "../pages/Index";
 
 const DynamicRouter = () => {
@@ -16,7 +17,7 @@ const DynamicRouter = () => {
 
       const componentMap: Record<string, JSX.Element> = {
         "/courses": <Courses />,
-        "/events": <div>Events</div>,
+        "/events": <Events />,
         "/rent": <div>Rent our space</div>,
         "/contact": <div>Contact</div>,
       };
