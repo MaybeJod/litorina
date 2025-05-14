@@ -18,6 +18,7 @@ const fetchFeaturedCourses = async (): Promise<Course[]> => {
       title: item.title,
       media: item.media,
       isFeatured: item.isFeatured,
+      slug: item.slug,
     }));
 
     return courses

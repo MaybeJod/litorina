@@ -33,8 +33,9 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
   if (!data || data.length === 0) {
     return (
       <section
-        className={`${backgroundColor ? "bg-[var(--index-section-background)]" : ""
-          } py-8`}
+        className={`${
+          backgroundColor ? "bg-[var(--index-section-background)]" : ""
+        } py-8`}
       >
         <h2 className="text-center text-3xl font-bold mb-8">{sectionTitle}</h2>
         <p className="max-[1050px]:px-4 container mx-auto">
@@ -46,8 +47,9 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
 
   return (
     <section
-      className={`${backgroundColor ? "bg-[var(--index-section-background)]" : ""
-        } py-8`}
+      className={`${
+        backgroundColor ? "bg-[var(--index-section-background)]" : ""
+      } py-8`}
     >
       <h2 className="text-center text-3xl font-bold mb-8">{sectionTitle}</h2>
       <CardGridContainer>
@@ -72,8 +74,9 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
               <NewsCard
                 title={(item as News).title}
                 description={(item as News).description
-                  .map((desc) =>
-                    desc.children?.map((child) => child.text).join(" ") || ""
+                  .map(
+                    (desc) =>
+                      desc.children?.map((child) => child.text).join(" ") || ""
                   )
                   .join(" ")} // Safely handle undefined children
                 publishedDate={(item as News).publishedDate || "Unknown Date"}
