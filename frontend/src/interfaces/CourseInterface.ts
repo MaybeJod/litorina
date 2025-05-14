@@ -3,7 +3,8 @@ import type { Media } from "./MediaInterface";
 
 interface Course {
   id: number;
-  documentId: string;
+  slug: string;
+  documentId?: string;
   title: string;
   description: RichText[];
   summary: string | null;

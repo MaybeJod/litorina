@@ -71,6 +71,7 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
                 documentId={(item as Course).documentId}
                 title={item.title}
                 media={item.media}
+                slug={item.slug}
               />
             )}
             {type === "news" && (

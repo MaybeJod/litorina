@@ -3,6 +3,7 @@ import type { Category } from "@/interfaces/CategoryInterface";
 import { useEffect, useState } from "react";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Skeleton } from "@/components/ui/skeleton";
+import Breadcrumbs from "@/components/custom/Breadcrumbs";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -81,6 +82,10 @@ const Courses = () => {
           alt="Courses banner"
           className="object-cover w-full aspect-4/1"
         />
+      </section>
+
+      <section>
+        <Breadcrumbs />
       </section>
 
       {/* title */}
@@ -166,7 +171,7 @@ const Courses = () => {
               <CourseCard
                 key={course.id}
                 title={course.title}
-                documentId={course.documentId}
+                slug={course.slug}
                 media={course.media}
               />
             ))

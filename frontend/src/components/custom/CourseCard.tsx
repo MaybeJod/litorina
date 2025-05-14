@@ -3,18 +3,18 @@ import { Link } from "react-router-dom";
 import { Card, CardHeader, CardFooter, CardTitle } from "./CustomCourseCard";
 
 interface CourseCardProps {
-  documentId: string;
+  slug: string;
   title: string;
   media: Media | null;
+  documentId?: string;
 }
 
-const CourseCard = ({ title, media, documentId }: CourseCardProps) => {
+const CourseCard = ({ slug, title, media }: CourseCardProps) => {
   const imageUrl = media?.formats?.thumbnail?.url
     ? `http://litorina.onrender.com${media?.formats?.thumbnail?.url}`
     : "https://placehold.co/0";
-
   return (
-    <Link to={`/courses/${documentId}`} className="block">
+    <Link to={`/courses/${slug}`} className="block">
       <Card className="w-full hover:shadow-lg transition-shadow duration-300">
         <CardHeader className="p-0">
           <img

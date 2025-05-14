@@ -27,7 +27,7 @@ const DynamicRouter = () => {
       }));
 
       dynamicRoutes.push({
-        path: "/courses/:documentId",
+        path: "/courses/:slug",
         element: <Course />,
       });
 

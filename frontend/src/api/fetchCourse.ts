@@ -1,9 +1,9 @@
 import type { Course } from "@/interfaces/CourseInterface";
 
-const fetchCourseById = async (documentId: string): Promise<Course | null> => {
+const fetchCourseBySlug = async (slug: string): Promise<Course | null> => {
   try {
     const response = await fetch(
-      `https://litorina.onrender.com/api/courses?filters[documentId][$eq]=${documentId}&populate=*`
+      `https://litorina.onrender.com/api/courses?filters[slug][$eq]=${slug}&populate=*`
     );
 
     if (!response.ok) {
@@ -17,7 +17,7 @@ const fetchCourseById = async (documentId: string): Promise<Course | null> => {
 
       const courseDetails: Course = {
         id: course.id,
-        documentId: course.documentId,
+        slug: course.slug,
         title: course.title,
         summary: course.summary,
         description: course.description,
@@ -36,4 +36,4 @@ const fetchCourseById = async (documentId: string): Promise<Course | null> => {
   }
 };
 
-export default fetchCourseById;
+export default fetchCourseBySlug;
