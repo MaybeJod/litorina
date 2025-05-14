@@ -129,7 +129,9 @@ const Courses = () => {
           <ToggleGroup
             type="single"
             value={selectedCategory}
-            onValueChange={(value) => value && handleCategoryChange(value)}
+            onValueChange={(value: string | undefined) => {
+              if (value) handleCategoryChange(value);
+            }}
             className="w-fit mx-auto flex flex-wrap gap-1"
           >
             <ToggleGroupItem
@@ -153,36 +155,38 @@ const Courses = () => {
       </div>
 
       {/* Course grid */}
-      {loading ? (
-        <div className="container mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[...Array(8)].map((_, index) => (
-            <div key={index} className="flex flex-col space-y-3">
-              <Skeleton className="h-[125px] w-full rounded-xl" />
-              <div className="space-y-2">
-                <Skeleton className="h-4 w-full" />
-                <Skeleton className="h-4 w-4/5" />
+      <section className="mb-8">
+        {loading ? (
+          <CardGridContainer>
+            {[...Array(8)].map((_, index) => (
+              <div key={index} className="flex flex-col space-y-3">
+                <Skeleton className="h-[125px] w-full rounded-xl" />
+                <div className="space-y-2">
+                  <Skeleton className="h-4 w-full" />
+                  <Skeleton className="h-4 w-4/5" />
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <CardGridContainer>
-          {courseData.length > 0 ? (
-            courseData.map((course) => (
-              <CourseCard
-                key={course.id}
-                title={course.title}
-                slug={course.slug}
-                media={course.media}
-              />
-            ))
-          ) : (
-            <p className="col-span-full text-center py-8">
-              No courses found in this category.
-            </p>
-          )}
-        </CardGridContainer>
-      )}
+            ))}
+          </CardGridContainer>
+        ) : (
+          <CardGridContainer>
+            {courseData.length > 0 ? (
+              courseData.map((course) => (
+                <CourseCard
+                  key={course.id}
+                  title={course.title}
+                  slug={course.slug}
+                  media={course.media}
+                />
+              ))
+            ) : (
+              <p className="col-span-full text-center py-8">
+                No courses found in this category.
+              </p>
+            )}
+          </CardGridContainer>
+        )}
+      </section>
     </>
   );
 };
