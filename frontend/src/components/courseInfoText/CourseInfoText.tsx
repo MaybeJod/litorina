@@ -3,7 +3,6 @@ import fetchCourseById from "@/api/fetchCourse";
 import CourseTabs from "./CourseTabs";
 import type { Course } from "@/interfaces/CourseInterface";
 
-
 interface CourseInfoTextProps {
   documentId: string;
 }
@@ -28,30 +27,74 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ documentId }) => {
     }
 
     switch (node.type) {
-      case "h1":
-        return <h1>{node.children?.map(renderRichText)}</h1>;
-      case "h2":
-        return <h2>{node.children?.map(renderRichText)}</h2>;
-      case "h3":
-        return <h3>{node.children?.map(renderRichText)}</h3>;
+      case "heading":
+        switch (node.level) {
+          case 1:
+            return (
+              <h1 className="text-[36px] font-bold my-4 sm:text-[28px]">
+                {node.children?.map(renderRichText)}
+              </h1>
+            );
+          case 2:
+            return (
+              <h2 className="text-[32px] font-bold my-4 sm:text-[24px]">
+                {node.children?.map(renderRichText)}
+              </h2>
+            );
+          case 3:
+            return (
+              <h3 className="text-[27px] font-bold my-4 sm:text-[22px]">
+                {node.children?.map(renderRichText)}
+              </h3>
+            );
+          default:
+            return (
+              <p className="text-[24px] font-medium my-2 sm:text-[18px]">
+                {node.children?.map(renderRichText)}
+              </p>
+            );
+        }
+
       case "paragraph":
-        return <p>{node.children?.map(renderRichText)}</p>;
+        return (
+          <p className="text-[24px] font-normal my-2 sm:text-[18px]">
+            {node.children?.map(renderRichText)}
+          </p>
+        );
+
       case "link":
         return (
-          <a href={node.url} target="_blank" rel="noopener noreferrer">
+          <a
+            href={node.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[24px] font-bold text-blue-600 underline hover:text-blue-800 sm:text-[18px]"
+          >
             {node.children?.map(renderRichText)}
           </a>
         );
+
       case "list":
-        return <ul>{node.children?.map(renderRichText)}</ul>;
+        return (
+          <ul className="list-disc pl-6 my-2 text-[24px] font-bold sm:text-[18px]">
+            {node.children?.map(renderRichText)}
+          </ul>
+        );
+
       case "list-item":
-        return <li>{node.children?.map(renderRichText)}</li>;
+        return (
+          <li className="mb-1 text-[24px] font-bold sm:text-[18px]">
+            {node.children?.map(renderRichText)}
+          </li>
+        );
+
       case "code":
         return (
-          <pre>
+          <pre className="bg-gray-100 p-4 rounded text-[20px] font-mono overflow-x-auto">
             <code>{node.children?.map(renderRichText)}</code>
           </pre>
         );
+
       default:
         return node.children?.map(renderRichText) || null;
     }
@@ -83,7 +126,9 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ documentId }) => {
 
   return (
     <div>
-      <h1>{course.title}</h1>
+      <h1 className="text-[36px] font-bold mb-6 sm:text-[28px]">
+        {course.title}
+      </h1>
       {Array.isArray(course.description) &&
         course.description.map((node, index) => (
           <div key={index}>{renderRichText(node)}</div>
@@ -105,4 +150,3 @@ const CourseInfoText: React.FC<CourseInfoTextProps> = ({ documentId }) => {
 };
 
 export default CourseInfoText;
-
