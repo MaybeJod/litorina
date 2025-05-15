@@ -1,3 +1,4 @@
+import type { Media } from "@/interfaces/MediaInterface";
 import { Card, CardHeader, CardFooter, CardTitle } from "./CustomEventCard";
 import { Link } from "react-router-dom";
 
@@ -5,12 +6,19 @@ interface NewsCardProps {
   title: string;
   description: string;
   publishedDate: string;
-  imageUrl?: string;
+  media: Media | null;
   documentId: string;
 }
 
-const NewsCard = ({ title, publishedDate, imageUrl, documentId }: NewsCardProps) => {
-  const placeholderImage = "https://placehold.co/400x200";
+const NewsCard = ({
+  title,
+  publishedDate,
+  media,
+  documentId,
+}: NewsCardProps) => {
+  const imageUrl = media?.formats?.thumbnail?.url
+    ? `http://litorina.onrender.com${media?.formats?.thumbnail?.url}`
+    : "https://placehold.co/0";
 
   const formattedDate = new Date(publishedDate).toLocaleString("en-US", {
     dateStyle: "full",
@@ -21,7 +29,7 @@ const NewsCard = ({ title, publishedDate, imageUrl, documentId }: NewsCardProps)
     <Card className="w-full hover:shadow-lg transition-shadow duration-300">
       <CardHeader className="p-0">
         <img
-          src={imageUrl || placeholderImage}
+          src={imageUrl}
           alt={title}
           loading="lazy"
           className="w-full h-48 object-cover rounded-t-lg"
