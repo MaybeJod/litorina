@@ -3,7 +3,7 @@ import type { Nav } from "@/interfaces/NavInterface";
 const fetchIndexNavItems = async (): Promise<Nav[]> => {
   try {
     const response = await fetch(
-      "https://litorina.onrender.com/api/home-navigation-cards"
+      "https://litorina.onrender.com/api/home-navigation-cards?populate=*"
     );
 
     if (!response.ok) {
@@ -17,6 +17,7 @@ const fetchIndexNavItems = async (): Promise<Nav[]> => {
       title: item.title,
       url: item.url,
       order: item.order,
+      media: item.media,
     }));
 
     return navItems.sort(

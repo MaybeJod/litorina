@@ -3,7 +3,7 @@ import type { News } from "@/interfaces/NewsInterface";
 const fetchFeaturedNews = async (): Promise<News[]> => {
   try {
     const response = await fetch(
-      "https://litorina.onrender.com/api/news-articles"
+      "https://litorina.onrender.com/api/news-articles?populate=*"
     );
 
     if (!response.ok) {
@@ -18,6 +18,7 @@ const fetchFeaturedNews = async (): Promise<News[]> => {
         title: item.title,
         description: item.description,
         publishedAt: item.publishedAt,
+        media: item.media,
       }))
       .sort((a: { publishedAt: string }, b: { publishedAt: string }) => {
         const dateA = new Date(a.publishedAt);
