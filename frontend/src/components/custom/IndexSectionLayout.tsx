@@ -78,9 +78,10 @@ const IndexSectionLayout: React.FC<SectionProps> = ({
                     (desc) =>
                       desc.children?.map((child) => child.text).join(" ") || ""
                   )
-                  .join(" ")} // Safely handle undefined children
-                publishedDate={(item as News).publishedDate || "Unknown Date"}
+                  .join(" ")} 
+                publishedDate={(item as News).publishedAt || "Unknown Date"}
                 documentId={(item as News).documentId}
+                media={item.media}
               />
             )}
           </React.Fragment>
